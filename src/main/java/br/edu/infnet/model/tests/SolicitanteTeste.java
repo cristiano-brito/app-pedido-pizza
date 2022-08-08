@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 public class SolicitanteTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
-        System.out.println("#Solicitante");
         Solicitante solicitante = new Solicitante("Raul", "717963636", "Jardim cruzeiro");
         System.out.println(solicitante);
     }
