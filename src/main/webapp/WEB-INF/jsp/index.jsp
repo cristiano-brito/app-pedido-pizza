@@ -67,44 +67,6 @@
         </tbody>
     </table>
 
-    <h3>Classe: Pizza</h3>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Atributo</th>
-            <th>Tipo</th>
-            <th>Descrição</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>nomeDaPizza</td>
-            <td>String</td>
-            <td>Nome da pizza</td>
-        </tr>
-        <tr>
-            <td>tamanhoDaPizza</td>
-            <td>char</td>
-            <td>Tamanho da Pizza</td>
-        </tr>
-        <tr>
-            <td>valorDaPizza</td>
-            <td>double</td>
-            <td>Preço da Pizza</td>
-        </tr>
-        <tr>
-            <td>ingrediente</td>
-            <td>String</td>
-            <td>Ingredientes para produção da pizza</td>
-        </tr>
-        <tr>
-            <td>codPizza</td>
-            <td>Integer</td>
-            <td>Código da Pizza</td>
-        </tr>
-        </tbody>
-    </table>
-
     <h3>Classe: Doce</h3>
     <table class="table table-striped">
         <thead>
