@@ -1,8 +1,10 @@
 package br.edu.infnet.model.domain;
 
+import br.edu.infnet.interfaces.IPrinter;
+
 import java.time.LocalDateTime;
 
-public class Pedido {
+public class Pedido implements IPrinter {
     private String descricao;
     private LocalDateTime data;
     private boolean web;
@@ -14,10 +16,6 @@ public class Pedido {
         this.descricao = descricao;
         this.data = data;
         this.web = web;
-    }
-
-    public void impressao() {
-
     }
 
     @Override
@@ -47,5 +45,11 @@ public class Pedido {
 
     public void setWeb(boolean web) {
         this.web = web;
+    }
+
+    @Override
+    public void impressao() {
+        System.out.println("#pedido");
+        System.out.println(this);
     }
 }

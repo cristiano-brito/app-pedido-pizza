@@ -1,6 +1,8 @@
 package br.edu.infnet.model.domain;
 
-public class Solicitante {
+import br.edu.infnet.interfaces.IPrinter;
+
+public class Solicitante implements IPrinter {
     private final String nome;
     private final String telefone;
     private final String endereco;
@@ -11,12 +13,14 @@ public class Solicitante {
         this.endereco = endereco;
     }
 
-    public void impressao() {
-
-    }
-
     @Override
     public String toString() {
         return nome + ";" + telefone + ";" + endereco;
+    }
+
+    @Override
+    public void impressao() {
+        System.out.println("#solicitante");
+        System.out.println(this);
     }
 }
