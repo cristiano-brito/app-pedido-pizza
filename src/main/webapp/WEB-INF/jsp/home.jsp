@@ -17,19 +17,19 @@
                     <a class="nav-link" href="/doce/lista">Doce</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Mista</a>
+                    <a class="nav-link" href="/mista/lista">Mista</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Salgada</a>
+                    <a class="nav-link" href="/salgada/lista">Salgada</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pizza</a>
+                    <a class="nav-link" href="/pizza/lista">Pizza</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Solicitante</a>
+                    <a class="nav-link" href="/solicitante/lista">Solicitante</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pedido</a>
+                    <a class="nav-link" href="/pedido/lista">Pedido</a>
                 </li>
             </ul>
         </div>

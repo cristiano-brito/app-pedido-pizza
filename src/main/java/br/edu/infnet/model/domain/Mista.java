@@ -2,7 +2,7 @@ package br.edu.infnet.model.domain;
 
 public class Mista extends Pizza {
 
-    private String final tipoPizzaMista;
+    private final String tipoPizzaMista;
 
     public Mista(String tipoPizzaMista) {
         this.tipoPizzaMista = tipoPizzaMista;
