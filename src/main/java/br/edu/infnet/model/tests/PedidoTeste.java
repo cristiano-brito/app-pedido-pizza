@@ -12,6 +12,7 @@ public class PedidoTeste implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+        System.out.println("#pedido");
         Pedido pedido1 = new Pedido();
         pedido1.setDescricao("Pedido Pizza1");
         pedido1.setData(LocalDateTime.now());

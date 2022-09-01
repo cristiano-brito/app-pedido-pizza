@@ -11,6 +11,10 @@ public class Solicitante {
         this.endereco = endereco;
     }
 
+    public void impressao() {
+
+    }
+
     @Override
     public String toString() {
         return nome + ";" + telefone + ";" + endereco;

@@ -7,9 +7,23 @@ public abstract class Pizza {
     private String ingrediente;
     private Integer codPizza;
 
+    public double calcularVenda() {
+        return valorDaPizza * 2;
+    }
+
+    public abstract void impressao();
+
     @Override
     public String toString() {
-        return nomeDaPizza + ";" + tamanhoDaPizza + ";" + valorDaPizza + ";" + ingrediente + ";" + codPizza;
+        return nomeDaPizza
+                + ";"
+                + tamanhoDaPizza
+                + ";" + valorDaPizza
+                + ";" + ingrediente
+                + ";"
+                + codPizza
+                + ";"
+                + calcularVenda();
     }
 
     public String getNomeDaPizza() {

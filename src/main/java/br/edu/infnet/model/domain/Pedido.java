@@ -16,6 +16,10 @@ public class Pedido {
         this.web = web;
     }
 
+    public void impressao() {
+
+    }
+
     @Override
     public String toString() {
         return descricao + ";" + data + ";" + web;
