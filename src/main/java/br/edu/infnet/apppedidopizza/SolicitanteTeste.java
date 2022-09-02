@@ -23,7 +23,6 @@ public class SolicitanteTeste implements ApplicationRunner {
         AppImpressao.relatorio("Inclusão do solicitante Maria!!!", solicitante2);
 
         Solicitante solicitante3 = new Solicitante("Bianca", "11111111111", "Pituba");
-        System.out.println(solicitante3);
 
         AppImpressao.relatorio("Inclusão do solicitante Ana!!!", solicitante3);
     }

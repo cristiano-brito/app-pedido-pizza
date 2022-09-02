@@ -3,24 +3,29 @@ package br.edu.infnet.model.domain;
 import br.edu.infnet.interfaces.IPrinter;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 public class Pedido implements IPrinter {
     private String descricao;
-    private LocalDateTime data;
+    private final LocalDateTime data;
     private boolean web;
+    private final Solicitante solicitante;
+    private Set<Pizza> pizzas;
 
-    public Pedido() {
+    public Pedido(Solicitante solicitante) {
+        data = LocalDateTime.now();
+        this.solicitante = solicitante;
     }
 
-    public Pedido(String descricao, LocalDateTime data, boolean web) {
-        this.descricao = descricao;
-        this.data = data;
-        this.web = web;
+    @Override
+    public void impressao() {
+        System.out.println("#pedido");
+        System.out.println(this);
     }
 
     @Override
     public String toString() {
-        return descricao + ";" + data + ";" + web;
+        return descricao + ";" + data + ";" + web + ";" + solicitante + ";" + pizzas.size();
     }
 
     public String getDescricao() {
@@ -31,14 +36,6 @@ public class Pedido implements IPrinter {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getData() {
-        return data;
-    }
-
-    public void setData(LocalDateTime data) {
-        this.data = data;
-    }
-
     public boolean isWeb() {
         return web;
     }
@@ -47,9 +44,12 @@ public class Pedido implements IPrinter {
         this.web = web;
     }
 
-    @Override
-    public void impressao() {
-        System.out.println("#pedido");
-        System.out.println(this);
+    public Set<Pizza> getPizzas() {
+        return pizzas;
     }
+
+    public void setPizzas(Set<Pizza> pizzas) {
+        this.pizzas = pizzas;
+    }
+
 }

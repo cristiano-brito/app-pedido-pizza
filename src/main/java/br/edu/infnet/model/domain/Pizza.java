@@ -2,6 +2,8 @@ package br.edu.infnet.model.domain;
 
 import br.edu.infnet.interfaces.IPrinter;
 
+import java.util.Objects;
+
 public abstract class Pizza implements IPrinter {
     private String nomeDaPizza;
     private char tamanhoDaPizza;
@@ -62,5 +64,18 @@ public abstract class Pizza implements IPrinter {
 
     public void setCodPizza(Integer codPizza) {
         this.codPizza = codPizza;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Pizza pizza = (Pizza) obj;
+        return Objects.equals(codPizza, pizza.codPizza);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codPizza);
     }
 }
