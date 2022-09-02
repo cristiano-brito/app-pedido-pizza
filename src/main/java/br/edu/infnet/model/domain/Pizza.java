@@ -1,17 +1,15 @@
 package br.edu.infnet.model.domain;
 
-public abstract class Pizza {
+import br.edu.infnet.interfaces.IPrinter;
+
+public abstract class Pizza implements IPrinter {
     private String nomeDaPizza;
     private char tamanhoDaPizza;
     private double valorDaPizza;
     private String ingrediente;
     private Integer codPizza;
 
-    public double calcularVenda() {
-        return valorDaPizza * 2;
-    }
-
-    public abstract void impressao();
+    public abstract double calcularVenda();
 
     @Override
     public String toString() {

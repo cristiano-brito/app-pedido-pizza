@@ -15,6 +15,11 @@ public class Mista extends Pizza {
     }
 
     @Override
+    public double calcularVenda() {
+        return getValorDaPizza() * 2;
+    }
+
+    @Override
     public String toString() {
         return tipoPizzaMista + ";" + super.toString();
     }

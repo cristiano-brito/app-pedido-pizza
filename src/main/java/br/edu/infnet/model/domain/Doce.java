@@ -11,7 +11,7 @@ public class Doce extends Pizza {
     @Override
     public double calcularVenda() {
         double valorDaPizzaDoce = getValorDaPizza() * 0.05;
-        return super.calcularVenda() + valorDaPizzaDoce;
+        return getValorDaPizza() * 2 + valorDaPizzaDoce;
     }
 
     @Override
