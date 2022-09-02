@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 public class Pedido implements IPrinter {
+
+    private Integer id;
     private String descricao;
     private final LocalDateTime data;
     private boolean web;
@@ -26,6 +28,14 @@ public class Pedido implements IPrinter {
     @Override
     public String toString() {
         return descricao + ";" + data + ";" + web + ";" + solicitante + ";" + pizzas.size();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDescricao() {

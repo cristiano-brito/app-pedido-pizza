@@ -5,6 +5,7 @@ import br.edu.infnet.interfaces.IPrinter;
 import java.util.Objects;
 
 public abstract class Pizza implements IPrinter {
+    private Integer id;
     private String nomeDaPizza;
     private char tamanhoDaPizza;
     private double valorDaPizza;
@@ -24,6 +25,14 @@ public abstract class Pizza implements IPrinter {
                 + codPizza
                 + ";"
                 + calcularVenda();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNomeDaPizza() {

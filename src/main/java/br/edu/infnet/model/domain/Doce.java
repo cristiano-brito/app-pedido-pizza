@@ -24,4 +24,8 @@ public class Doce extends Pizza {
     public String toString() {
         return tipoPizzaDoce + ";" + super.toString();
     }
+
+    public String getTipoPizzaDoce() {
+        return tipoPizzaDoce;
+    }
 }

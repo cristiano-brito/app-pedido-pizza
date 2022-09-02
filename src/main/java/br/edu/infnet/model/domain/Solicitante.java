@@ -3,6 +3,7 @@ package br.edu.infnet.model.domain;
 import br.edu.infnet.interfaces.IPrinter;
 
 public class Solicitante implements IPrinter {
+    private Integer id;
     private final String nome;
     private final String telefone;
     private final String endereco;
@@ -22,5 +23,13 @@ public class Solicitante implements IPrinter {
     public void impressao() {
         System.out.println("#solicitante");
         System.out.println(this);
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
