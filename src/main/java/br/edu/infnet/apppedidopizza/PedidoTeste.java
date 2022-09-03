@@ -1,7 +1,7 @@
 package br.edu.infnet.apppedidopizza;
 
+import br.edu.infnet.controller.PedidoController;
 import br.edu.infnet.model.domain.*;
-import br.edu.infnet.model.tests.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -54,10 +54,10 @@ public class PedidoTeste implements ApplicationRunner {
         Solicitante solicitante1 = new Solicitante("Raul", "71796363600", "Jardim cruzeiro");
 
         Pedido pedido1 = new Pedido(solicitante1);
-        pedido1.setDescricao("Pedido Pizza1");
+        pedido1.setDescricao("Pedido Pizza 1");
         pedido1.setWeb(true);
         pedido1.setPizzas(listaPizzaPedido1);
-        AppImpressao.relatorio("Inclusão do Pedido 1!!!", pedido1);
+        PedidoController.incluir(pedido1);
 
         Set<Pizza> listaPizzaPedido2 = new HashSet<>();
         listaPizzaPedido2.add(doce1);
@@ -65,10 +65,10 @@ public class PedidoTeste implements ApplicationRunner {
         Solicitante solicitante2 = new Solicitante("Marcela", "99999999999", "Itaigara");
 
         Pedido pedido2 = new Pedido(solicitante2);
-        pedido2.setDescricao("Pedido Pizza2");
+        pedido2.setDescricao("Pedido Pizza 2");
         pedido2.setWeb(true);
         pedido2.setPizzas(listaPizzaPedido2);
-        AppImpressao.relatorio("Inclusão do Pedido 2!!!", pedido2);
+        PedidoController.incluir(pedido2);
 
         Set<Pizza> listaPizzaPedido3 = new HashSet<>();
         listaPizzaPedido3.add(salgada1);
@@ -78,9 +78,9 @@ public class PedidoTeste implements ApplicationRunner {
         Solicitante solicitante3 = new Solicitante("Bianca", "11111111111", "Pituba");
 
         Pedido pedido3 = new Pedido(solicitante3);
-        pedido3.setDescricao("Pedido Pizza3");
+        pedido3.setDescricao("Pedido Pizza 3");
         pedido3.setWeb(true);
         pedido3.setPizzas(listaPizzaPedido3);
-        AppImpressao.relatorio("Inclusão do Pedido 3!!!", pedido3);
+        PedidoController.incluir(pedido3);
     }
 }

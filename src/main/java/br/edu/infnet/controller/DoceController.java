@@ -36,12 +36,11 @@ public class DoceController {
 
     @GetMapping(value = "/doce/lista")
     public String telaLista(Model model) {
-
         model.addAttribute("listagem", obterLista());
-
         return "doce/lista";
     }
-@GetMapping(value = "/doce/{id}/excluir")
+
+    @GetMapping(value = "/doce/{id}/excluir")
     public String exclusao(@PathVariable Integer id) {
         excluir(id);
         return "redirect:/doce/lista";

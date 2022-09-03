@@ -1,7 +1,7 @@
 package br.edu.infnet.apppedidopizza;
 
+import br.edu.infnet.controller.SolicitanteController;
 import br.edu.infnet.model.domain.Solicitante;
-import br.edu.infnet.model.tests.AppImpressao;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -15,15 +15,12 @@ public class SolicitanteTeste implements ApplicationRunner {
         System.out.println("##########solicitante");
 
         Solicitante solicitante1 = new Solicitante("Raul", "71796363600", "Jardim cruzeiro");
-
-        AppImpressao.relatorio("Inclusão do solicitante Cristiano!!!", solicitante1);
+        SolicitanteController.incluir(solicitante1);
 
         Solicitante solicitante2 = new Solicitante("Marcela", "99999999999", "Itaigara");
-
-        AppImpressao.relatorio("Inclusão do solicitante Maria!!!", solicitante2);
+        SolicitanteController.incluir(solicitante2);
 
         Solicitante solicitante3 = new Solicitante("Bianca", "11111111111", "Pituba");
-
-        AppImpressao.relatorio("Inclusão do solicitante Ana!!!", solicitante3);
+        SolicitanteController.incluir(solicitante3);
     }
 }

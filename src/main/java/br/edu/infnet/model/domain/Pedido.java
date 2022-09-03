@@ -46,6 +46,10 @@ public class Pedido implements IPrinter {
         this.descricao = descricao;
     }
 
+    public LocalDateTime getData() {
+        return data;
+    }
+
     public boolean isWeb() {
         return web;
     }

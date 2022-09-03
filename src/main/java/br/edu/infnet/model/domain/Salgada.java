@@ -25,4 +25,7 @@ public class Salgada extends Pizza {
         return tipoPizzaSalgada + ";" + super.toString();
     }
 
+    public String getTipoPizzaSalgada() {
+        return tipoPizzaSalgada;
+    }
 }

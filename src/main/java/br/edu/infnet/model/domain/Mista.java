@@ -23,4 +23,8 @@ public class Mista extends Pizza {
     public String toString() {
         return tipoPizzaMista + ";" + super.toString();
     }
+
+    public String getTipoPizzaMista() {
+        return tipoPizzaMista;
+    }
 }

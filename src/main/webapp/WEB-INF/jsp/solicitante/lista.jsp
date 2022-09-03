@@ -40,47 +40,27 @@
     <h2>AppPedidoPizza</h2>
     <p>Projeto de Gestão de Pedidos de Pizza</p>
 
-   <h3>Classe: Doce</h3>
+   <h3>Classe: Solicitante</h3>
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Nome</th>
-            <th>Tamanho</th>
-            <th>valor</th>
-            <th>Ingrediente</th>
-            <th>Código</th>
-            <th>Tipo</th>
+            <th>Telefone</th>
+            <th>Endereço</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Doce de leite</td>
-            <td>Grande</td>
-            <td>R$50.00</td>
-            <td>Leite, açúcar, doce de leite</td>
-            <td>5356363</td>
-            <td>Doce</td>
-        </tr>
-        <tr>
-            <td>tamanhoDaPizza</td>
-            <td>char</td>
-            <td>Tamanho da Pizza</td>
-        </tr>
-        <tr>
-            <td>valorDaPizza</td>
-            <td>double</td>
-            <td>Preço da Pizza</td>
-        </tr>
-        <tr>
-            <td>ingrediente</td>
-            <td>String</td>
-            <td>Ingredientes para produção da pizza</td>
-        </tr>
-        <tr>
-            <td>codPizza</td>
-            <td>Integer</td>
-            <td>Código da Pizza</td>
-        </tr>
+        <c:forEach var="s" items="${listagem}">
+            <tr>
+                <td>${s.id}</td>
+                <td>${s.nome}</td>
+                <td>${s.telefone}</td>
+                <td>${s.endereco}</td>
+                <td><a href="/solicitante/${s.id}/excluir">excluir</a></td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 </div>

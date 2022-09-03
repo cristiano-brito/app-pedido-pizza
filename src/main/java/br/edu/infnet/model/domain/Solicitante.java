@@ -32,4 +32,16 @@ public class Solicitante implements IPrinter {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
 }
