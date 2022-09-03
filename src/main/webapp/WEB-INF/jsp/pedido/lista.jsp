@@ -37,17 +37,17 @@
     </nav>
 
 <div class="container mt-3">
-    <h2>AppPedidoPizza</h2>
-    <p>Projeto de Gestão de Pedidos de Pizza</p>
 
-   <h3>Classe: Pedido</h3>
+   <h3>Cadastramento de pedidos</h3>
     <table class="table table-striped">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Descricao</th>
+            <th>Descrição</th>
             <th>Data</th>
             <th>Web</th>
+            <th>Solicitante</th>
+            <th>Pizza</th>
             <th></th>
         </tr>
         </thead>
@@ -58,6 +58,8 @@
                 <td>${p.descricao}</td>
                 <td>${p.data}</td>
                 <td>${p.web}</td>
+                <td>${p.solicitante.nome}</td>
+                <td>${p.pizzas.size()}</td>
                 <td><a href="/pedido/${p.id}/excluir">excluir</a></td>
             </tr>
         </c:forEach>

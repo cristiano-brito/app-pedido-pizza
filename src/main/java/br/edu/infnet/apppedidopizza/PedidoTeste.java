@@ -10,6 +10,9 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +22,7 @@ public class PedidoTeste implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+
         System.out.println("##########pedido");
 
         Doce doce1 = new Doce("doce");
@@ -49,20 +53,45 @@ public class PedidoTeste implements ApplicationRunner {
         salgada1.setIngrediente("Tomate, queijo, calabressa");
         salgada1.setCodPizza(5356363);
 
+        String dir ="C:/Users/crist/Documents/";
+        String arq ="pizzas.txt";
+
         try {
-            Set<Pizza> listaPizzaPedido1 = new HashSet<>();
-            listaPizzaPedido1.add(doce1);
-            listaPizzaPedido1.add(doce2);
-            listaPizzaPedido1.add(salgada1);
+            try {
+                FileReader fileReader = new FileReader(dir+arq);
+                BufferedReader leitura = new BufferedReader(fileReader);
 
-            Solicitante solicitante1 = new Solicitante("Raul", "71796363600", "Jardim cruzeiro");
+                String linha = leitura.readLine();
+                while (linha != null) {
+                    try {
+                        String[] campos = linha.split(";");
 
-            Pedido pedido1 = new Pedido(solicitante1, listaPizzaPedido1);
-            pedido1.setDescricao("Pedido Pizza 1");
-            pedido1.setWeb(true);
-            PedidoController.incluir(pedido1);
-        } catch (TelefoneInvalidoException | SolicitanteNuloException | PedidoSemProdutosException e) {
-            System.out.println("[ERROR] - PEDIDO " + e.getMessage());
+                        Set<Pizza> listaPizzaPedido1 = new HashSet<>();
+                        listaPizzaPedido1.add(doce1);
+                        listaPizzaPedido1.add(doce2);
+                        listaPizzaPedido1.add(salgada1);
+
+                        Solicitante solicitante1 = new Solicitante(campos[2], campos[3], campos[4]);
+
+                        Pedido pedido1 = new Pedido(solicitante1, listaPizzaPedido1);
+                        pedido1.setDescricao(campos[0]);
+                        pedido1.setWeb(Boolean.valueOf(campos[1]));
+                        PedidoController.incluir(pedido1);
+                    } catch (TelefoneInvalidoException | SolicitanteNuloException | PedidoSemProdutosException e) {
+                        System.out.println("[ERROR] - PEDIDO " + e.getMessage());
+                    }
+
+                    linha = leitura.readLine();
+                }
+
+                leitura.close();
+                fileReader.close();
+
+            } catch (IOException e) {
+                System.out.println("[ERRO] Problema no fechamento do arquivo!!");;
+            }
+        } finally {
+            System.out.println("Terminou!!!");
         }
 
         try {

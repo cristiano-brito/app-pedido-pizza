@@ -37,10 +37,8 @@
     </nav>
 
 <div class="container mt-3">
-    <h2>AppPedidoPizza</h2>
-    <p>Projeto de Gestão de Pedidos de Pizza</p>
 
-   <h3>Classe: Salgada</h3>
+   <h3>Cadastramento de pizzas salgadas</h3>
     <table class="table table-striped">
         <thead>
         <tr>

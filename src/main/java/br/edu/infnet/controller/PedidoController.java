@@ -21,7 +21,7 @@ public class PedidoController {
         pedido.setId(id++);
         mapaPedido.put(pedido.getId(), pedido);
 
-        AppImpressao.relatorio("Inclusão de "
+        AppImpressao.relatorio("Inclusão do pedido "
                 + pedido.getDescricao()
                 + " realizada com sucesso!!!", pedido);
     }

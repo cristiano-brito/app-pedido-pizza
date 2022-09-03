@@ -73,4 +73,16 @@ public class Pedido implements IPrinter {
     public void setWeb(boolean web) {
         this.web = web;
     }
+
+    public Solicitante getSolicitante() {
+        return solicitante;
+    }
+
+    public Set<Pizza> getPizzas() {
+        return pizzas;
+    }
+
+    public void setPizzas(Set<Pizza> pizzas) {
+        this.pizzas = pizzas;
+    }
 }
