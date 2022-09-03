@@ -1,5 +1,7 @@
 package br.edu.infnet.model.domain;
 
+import br.edu.infnet.model.exceptions.ValorDaPizzaSalgadaInvalidoException;
+
 public class Salgada extends Pizza {
 
     private final String tipoPizzaSalgada;
@@ -9,9 +11,15 @@ public class Salgada extends Pizza {
     }
 
     @Override
-    public double calcularVenda() {
-        double valorDaPizzaSalgada = getValorDaPizza() + (getValorDaPizza() * 0.25);
-        return valorDaPizzaSalgada;
+    public double calcularVenda() throws ValorDaPizzaSalgadaInvalidoException {
+
+        double valorMinimoDaPizzaSalgada = 25.0;
+        if (getValorDaPizza() < valorMinimoDaPizzaSalgada) {
+            throw new ValorDaPizzaSalgadaInvalidoException(
+                    "Impossível preencher o valor("+getValorDaPizza()+") porque está abaixo do valor minimo estabelecido!!!");
+        }
+
+        return getValorDaPizza();
     }
 
     @Override

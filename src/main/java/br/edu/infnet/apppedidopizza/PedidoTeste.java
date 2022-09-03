@@ -2,6 +2,9 @@ package br.edu.infnet.apppedidopizza;
 
 import br.edu.infnet.controller.PedidoController;
 import br.edu.infnet.model.domain.*;
+import br.edu.infnet.model.exceptions.PedidoSemProdutosException;
+import br.edu.infnet.model.exceptions.SolicitanteNuloException;
+import br.edu.infnet.model.exceptions.TelefoneInvalidoException;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -46,41 +49,92 @@ public class PedidoTeste implements ApplicationRunner {
         salgada1.setIngrediente("Tomate, queijo, calabressa");
         salgada1.setCodPizza(5356363);
 
-        Set<Pizza> listaPizzaPedido1 = new HashSet<>();
-        listaPizzaPedido1.add(doce1);
-        listaPizzaPedido1.add(doce2);
-        listaPizzaPedido1.add(salgada1);
+        try {
+            Set<Pizza> listaPizzaPedido1 = new HashSet<>();
+            listaPizzaPedido1.add(doce1);
+            listaPizzaPedido1.add(doce2);
+            listaPizzaPedido1.add(salgada1);
 
-        Solicitante solicitante1 = new Solicitante("Raul", "71796363600", "Jardim cruzeiro");
+            Solicitante solicitante1 = new Solicitante("Raul", "71796363600", "Jardim cruzeiro");
 
-        Pedido pedido1 = new Pedido(solicitante1);
-        pedido1.setDescricao("Pedido Pizza 1");
-        pedido1.setWeb(true);
-        pedido1.setPizzas(listaPizzaPedido1);
-        PedidoController.incluir(pedido1);
+            Pedido pedido1 = new Pedido(solicitante1, listaPizzaPedido1);
+            pedido1.setDescricao("Pedido Pizza 1");
+            pedido1.setWeb(true);
+            PedidoController.incluir(pedido1);
+        } catch (TelefoneInvalidoException | SolicitanteNuloException | PedidoSemProdutosException e) {
+            System.out.println("[ERROR] - PEDIDO " + e.getMessage());
+        }
 
-        Set<Pizza> listaPizzaPedido2 = new HashSet<>();
-        listaPizzaPedido2.add(doce1);
+        try {
+            Set<Pizza> listaPizzaPedido2 = new HashSet<>();
+            listaPizzaPedido2.add(doce1);
 
-        Solicitante solicitante2 = new Solicitante("Marcela", "99999999999", "Itaigara");
+            Solicitante solicitante2 = new Solicitante("Marcela", "99999999999", "Itaigara");
 
-        Pedido pedido2 = new Pedido(solicitante2);
-        pedido2.setDescricao("Pedido Pizza 2");
-        pedido2.setWeb(true);
-        pedido2.setPizzas(listaPizzaPedido2);
-        PedidoController.incluir(pedido2);
+            Pedido pedido2 = new Pedido(solicitante2, listaPizzaPedido2);
+            pedido2.setDescricao("Pedido Pizza 2");
+            pedido2.setWeb(true);
+            PedidoController.incluir(pedido2);
+        } catch (TelefoneInvalidoException | SolicitanteNuloException | PedidoSemProdutosException e) {
+            System.out.println("[ERROR] - PEDIDO " + e.getMessage());
+        }
 
-        Set<Pizza> listaPizzaPedido3 = new HashSet<>();
-        listaPizzaPedido3.add(salgada1);
-        listaPizzaPedido3.add(doce1);
-        listaPizzaPedido3.add(mista1);
+        try {
+            Set<Pizza> listaPizzaPedido3 = new HashSet<>();
+            listaPizzaPedido3.add(salgada1);
+            listaPizzaPedido3.add(doce1);
+            listaPizzaPedido3.add(mista1);
 
-        Solicitante solicitante3 = new Solicitante("Bianca", "11111111111", "Pituba");
+            Solicitante solicitante3 = new Solicitante("Bianca", "11111111111", "Pituba");
 
-        Pedido pedido3 = new Pedido(solicitante3);
-        pedido3.setDescricao("Pedido Pizza 3");
-        pedido3.setWeb(true);
-        pedido3.setPizzas(listaPizzaPedido3);
-        PedidoController.incluir(pedido3);
+            Pedido pedido3 = new Pedido(solicitante3, listaPizzaPedido3);
+            pedido3.setDescricao("Pedido Pizza 3");
+            pedido3.setWeb(true);
+            PedidoController.incluir(pedido3);
+        } catch (TelefoneInvalidoException | SolicitanteNuloException | PedidoSemProdutosException e) {
+            System.out.println("[ERROR] - PEDIDO " + e.getMessage());
+        }
+
+        try {
+            Set<Pizza> listaPizzaPedido4 = new HashSet<>();
+            listaPizzaPedido4.add(salgada1);
+            listaPizzaPedido4.add(doce1);
+            listaPizzaPedido4.add(mista1);
+
+            Solicitante solicitante4 = new Solicitante("Bianca", "11111111111", "Pituba");
+
+            Pedido pedido4 = new Pedido(null, listaPizzaPedido4);
+            pedido4.setDescricao("Pedido Pizza 4");
+            pedido4.setWeb(true);
+            PedidoController.incluir(pedido4);
+        } catch (TelefoneInvalidoException | SolicitanteNuloException | PedidoSemProdutosException e) {
+            System.out.println("[ERROR] - PEDIDO " + e.getMessage());
+        }
+
+        try {
+            Set<Pizza> listaPizzaPedido5 = new HashSet<>();
+
+            Solicitante solicitante5 = new Solicitante("Bianca", "11111111111", "Pituba");
+
+            Pedido pedido5 = new Pedido(solicitante5, listaPizzaPedido5);
+            pedido5.setDescricao("Pedido Pizza 5");
+            pedido5.setWeb(true);
+            PedidoController.incluir(pedido5);
+        } catch (TelefoneInvalidoException | SolicitanteNuloException | PedidoSemProdutosException e) {
+            System.out.println("[ERROR] - PEDIDO " + e.getMessage());
+        }
+
+        try {
+            Set<Pizza> listaPizzaPedido6 = null;
+
+            Solicitante solicitante6 = new Solicitante("Bianca", "11111111111", "Pituba");
+
+            Pedido pedido6 = new Pedido(solicitante6, listaPizzaPedido6);
+            pedido6.setDescricao("Pedido Pizza 6");
+            pedido6.setWeb(true);
+            PedidoController.incluir(pedido6);
+        } catch (TelefoneInvalidoException | SolicitanteNuloException | PedidoSemProdutosException e) {
+            System.out.println("[ERROR] - PEDIDO " + e.getMessage());
+        }
     }
 }

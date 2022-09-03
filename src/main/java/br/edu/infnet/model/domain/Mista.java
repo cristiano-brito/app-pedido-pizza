@@ -1,5 +1,7 @@
 package br.edu.infnet.model.domain;
 
+import br.edu.infnet.model.exceptions.TamanhoDaPizzaMistaException;
+
 public class Mista extends Pizza {
 
     private final String tipoPizzaMista;
@@ -15,8 +17,22 @@ public class Mista extends Pizza {
     }
 
     @Override
-    public double calcularVenda() {
-        return getValorDaPizza() * 2;
+    public double calcularVenda() throws TamanhoDaPizzaMistaException {
+
+        if ((!(Character.compare('P', getTamanhoDaPizza()) == 0)) && (!(Character.compare('M', getTamanhoDaPizza()) == 0)) && (!(Character.compare('G', getTamanhoDaPizza()) == 0))) {
+            throw new TamanhoDaPizzaMistaException("Impossível preencher tamanho da pizza com ("+getTamanhoDaPizza()+") porque é diferente de (P) (M) (G)");
+        }
+
+        double precoDaPizza;
+        if((Character.compare('P', getTamanhoDaPizza()) == 0)) {
+            precoDaPizza = getValorDaPizza() * 0.02;
+            return precoDaPizza + getValorDaPizza();
+        } else if ((Character.compare('M', getTamanhoDaPizza()) == 0)) {
+            precoDaPizza = getValorDaPizza() * 0.05;
+            return precoDaPizza + getValorDaPizza();
+        }
+        precoDaPizza = getValorDaPizza() * 0.10;
+        return precoDaPizza + getValorDaPizza();
     }
 
     @Override

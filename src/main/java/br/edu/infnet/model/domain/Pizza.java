@@ -1,6 +1,9 @@
 package br.edu.infnet.model.domain;
 
 import br.edu.infnet.interfaces.IPrinter;
+import br.edu.infnet.model.exceptions.TamanhoDaPizzaMistaException;
+import br.edu.infnet.model.exceptions.ValorDaPizzaDoceInvalidoException;
+import br.edu.infnet.model.exceptions.ValorDaPizzaSalgadaInvalidoException;
 
 import java.util.Objects;
 
@@ -12,7 +15,7 @@ public abstract class Pizza implements IPrinter {
     private String ingrediente;
     private Integer codPizza;
 
-    public abstract double calcularVenda();
+    public abstract double calcularVenda() throws ValorDaPizzaDoceInvalidoException, TamanhoDaPizzaMistaException, ValorDaPizzaSalgadaInvalidoException;
 
     @Override
     public String toString() {
@@ -22,9 +25,7 @@ public abstract class Pizza implements IPrinter {
                 + ";" + valorDaPizza
                 + ";" + ingrediente
                 + ";"
-                + codPizza
-                + ";"
-                + calcularVenda();
+                + codPizza;
     }
 
     public Integer getId() {

@@ -1,6 +1,7 @@
 package br.edu.infnet.model.domain;
 
 import br.edu.infnet.interfaces.IPrinter;
+import br.edu.infnet.model.exceptions.TelefoneInvalidoException;
 
 public class Solicitante implements IPrinter {
     private Integer id;
@@ -8,7 +9,16 @@ public class Solicitante implements IPrinter {
     private final String telefone;
     private final String endereco;
 
-    public Solicitante(String nome, String telefone, String endereco) {
+    public Solicitante(String nome, String telefone, String endereco) throws TelefoneInvalidoException {
+
+        if(telefone == null) {
+            throw new TelefoneInvalidoException("Não é possível aceitar CPF nulo.");
+        }
+
+        if(telefone.isEmpty()) {
+            throw new TelefoneInvalidoException("Não é possível aceitar CPF sem preenchimento.");
+        }
+
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;

@@ -14,13 +14,39 @@ public class SolicitanteTeste implements ApplicationRunner {
     public void run(ApplicationArguments args) {
         System.out.println("##########solicitante");
 
-        Solicitante solicitante1 = new Solicitante("Raul", "71796363600", "Jardim cruzeiro");
-        SolicitanteController.incluir(solicitante1);
+        try {
+            Solicitante solicitante1 = new Solicitante("Raul", "71796363600", "Jardim cruzeiro");
+            SolicitanteController.incluir(solicitante1);
+        } catch (Exception e) {
+            System.out.println("[ERROR] - SOLICITANTE " + e.getMessage());
+        }
 
-        Solicitante solicitante2 = new Solicitante("Marcela", "99999999999", "Itaigara");
-        SolicitanteController.incluir(solicitante2);
+        try {
+            Solicitante solicitante2 = new Solicitante("Marcela", "99999999999", "Itaigara");
+            SolicitanteController.incluir(solicitante2);
+        } catch (Exception e) {
+            System.out.println("[ERROR] - SOLICITANTE " + e.getMessage());
+        }
 
-        Solicitante solicitante3 = new Solicitante("Bianca", "11111111111", "Pituba");
-        SolicitanteController.incluir(solicitante3);
+        try {
+            Solicitante solicitante3 = new Solicitante("Bianca", "11111111111", "Pituba");
+            SolicitanteController.incluir(solicitante3);
+        } catch (Exception e) {
+            System.out.println("[ERROR] - SOLICITANTE " + e.getMessage());
+        }
+
+        try {
+            Solicitante solicitante4 = new Solicitante("Marcela", null, "Itaigara");
+            SolicitanteController.incluir(solicitante4);
+        } catch (Exception e) {
+            System.out.println("[ERROR] - SOLICITANTE " + e.getMessage());
+        }
+
+        try {
+            Solicitante solicitante5 = new Solicitante("Bianca", "", "Pituba");
+            SolicitanteController.incluir(solicitante5);
+        } catch (Exception e) {
+            System.out.println("[ERROR] - SOLICITANTE " + e.getMessage());
+        }
     }
 }
