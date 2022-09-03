@@ -14,33 +14,4 @@ public class AppImpressao {
 
         pizza.impressao();
     }
-
-    public static void main(String[] args) {
-
-        String dir ="C:/Users/crist/Documents/";
-        String arq ="pizzas.txt";
-
-        try {
-            try {
-                FileReader fileReader = new FileReader(dir+arq);
-                BufferedReader leitura = new BufferedReader(fileReader);
-
-                String linha = leitura.readLine();
-                while (linha != null) {
-                    System.out.println(linha);
-
-                    linha = leitura.readLine();
-                }
-
-                leitura.close();
-                fileReader.close();
-
-            } catch (IOException e) {
-                System.out.println("[ERRO] Problema no fechamento do arquivo!!");;
-            }
-        } finally {
-            System.out.println("Terminou!!!");
-        }
-
-    }
 }
