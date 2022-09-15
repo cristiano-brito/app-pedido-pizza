@@ -8,229 +8,181 @@
     <title>AppPedidoPizza</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm bg-light navbar-light">
-        <div class="container-fluid">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/">Home</a>
-                </li>
-                <c:if test="${not empty user}">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/usuario/lista">Usuário</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/doce/lista">Doce</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/mista/lista">Mista</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/salgada/lista">Salgada</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/pizza/lista">Pizza</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/solicitante/lista">Solicitante</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/pedido/lista">Pedido</a>
-                    </li>
-                </c:if>
-            </ul>
+    <c:import url="/WEB-INF/jsp/menu.jsp"/>
 
-            <ul class="navbar-nav">
-                <c:if test="${empty user}">
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Signup</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                </c:if>
+    <div class="container mt-3">
+        <h2>AppPedidoPizza</h2>
+        <p>Projeto de Gestão de Pedidos de Pizza</p>
 
-                <c:if test="${not empty user}">
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">Logout ${user}</a>
-                </li>
-                </c:if>
-            </ul>
-        </div>
-    </nav>
+        <h3>Classe: Solicitante</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Descrição</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>nome</td>
+                <td>String</td>
+                <td>Nome do solicitante</td>
+            </tr>
+            <tr>
+                <td>telefone</td>
+                <td>String</td>
+                <td>Telefone do solicitante</td>
+            </tr>
+            <tr>
+                <td>endereco</td>
+                <td>String</td>
+                <td>Endereço do solicitante</td>
+            </tr>
+            </tbody>
+        </table>
 
-<div class="container mt-3">
-    <h2>AppPedidoPizza</h2>
-    <p>Projeto de Gestão de Pedidos de Pizza</p>
+        <h3>Classe: Pedido</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Descrição</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>descricao</td>
+                <td>String</td>
+                <td>Descrição do pedido</td>
+            </tr>
+            <tr>
+                <td>data</td>
+                <td>LocalDateTime</td>
+                <td>Data de realização do pedido</td>
+            </tr>
+            <tr>
+                <td>web</td>
+                <td>boolean</td>
+                <td>Indicativo para um pedido online ou presencial</td>
+            </tr>
+            </tbody>
+        </table>
 
-    <h3>Classe: Solicitante</h3>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Atributo</th>
-            <th>Tipo</th>
-            <th>Descrição</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>nome</td>
-            <td>String</td>
-            <td>Nome do solicitante</td>
-        </tr>
-        <tr>
-            <td>telefone</td>
-            <td>String</td>
-            <td>Telefone do solicitante</td>
-        </tr>
-        <tr>
-            <td>endereco</td>
-            <td>String</td>
-            <td>Endereço do solicitante</td>
-        </tr>
-        </tbody>
-    </table>
+        <h3>Classe: Doce</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Descrição</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>nomeDaPizza</td>
+                <td>String</td>
+                <td>Nome da pizza</td>
+            </tr>
+            <tr>
+                <td>tamanhoDaPizza</td>
+                <td>char</td>
+                <td>Tamanho da Pizza</td>
+            </tr>
+            <tr>
+                <td>valorDaPizza</td>
+                <td>double</td>
+                <td>Preço da Pizza</td>
+            </tr>
+            <tr>
+                <td>ingrediente</td>
+                <td>String</td>
+                <td>Ingredientes para produção da pizza</td>
+            </tr>
+            <tr>
+                <td>codPizza</td>
+                <td>Integer</td>
+                <td>Código da Pizza</td>
+            </tr>
+            </tbody>
+        </table>
 
-    <h3>Classe: Pedido</h3>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Atributo</th>
-            <th>Tipo</th>
-            <th>Descrição</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>descricao</td>
-            <td>String</td>
-            <td>Descrição do pedido</td>
-        </tr>
-        <tr>
-            <td>data</td>
-            <td>LocalDateTime</td>
-            <td>Data de realização do pedido</td>
-        </tr>
-        <tr>
-            <td>web</td>
-            <td>boolean</td>
-            <td>Indicativo para um pedido online ou presencial</td>
-        </tr>
-        </tbody>
-    </table>
+        <h3>Classe: Salgada</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Descrição</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>nomeDaPizza</td>
+                <td>String</td>
+                <td>Nome da pizza</td>
+            </tr>
+            <tr>
+                <td>tamanhoDaPizza</td>
+                <td>char</td>
+                <td>Tamanho da Pizza</td>
+            </tr>
+            <tr>
+                <td>valorDaPizza</td>
+                <td>double</td>
+                <td>Preço da Pizza</td>
+            </tr>
+            <tr>
+                <td>ingrediente</td>
+                <td>String</td>
+                <td>Ingredientes para produção da pizza</td>
+            </tr>
+            <tr>
+                <td>codPizza</td>
+                <td>Integer</td>
+                <td>Código da Pizza</td>
+            </tr>
+            </tbody>
+        </table>
 
-    <h3>Classe: Doce</h3>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Atributo</th>
-            <th>Tipo</th>
-            <th>Descrição</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>nomeDaPizza</td>
-            <td>String</td>
-            <td>Nome da pizza</td>
-        </tr>
-        <tr>
-            <td>tamanhoDaPizza</td>
-            <td>char</td>
-            <td>Tamanho da Pizza</td>
-        </tr>
-        <tr>
-            <td>valorDaPizza</td>
-            <td>double</td>
-            <td>Preço da Pizza</td>
-        </tr>
-        <tr>
-            <td>ingrediente</td>
-            <td>String</td>
-            <td>Ingredientes para produção da pizza</td>
-        </tr>
-        <tr>
-            <td>codPizza</td>
-            <td>Integer</td>
-            <td>Código da Pizza</td>
-        </tr>
-        </tbody>
-    </table>
-
-    <h3>Classe: Salgada</h3>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Atributo</th>
-            <th>Tipo</th>
-            <th>Descrição</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>nomeDaPizza</td>
-            <td>String</td>
-            <td>Nome da pizza</td>
-        </tr>
-        <tr>
-            <td>tamanhoDaPizza</td>
-            <td>char</td>
-            <td>Tamanho da Pizza</td>
-        </tr>
-        <tr>
-            <td>valorDaPizza</td>
-            <td>double</td>
-            <td>Preço da Pizza</td>
-        </tr>
-        <tr>
-            <td>ingrediente</td>
-            <td>String</td>
-            <td>Ingredientes para produção da pizza</td>
-        </tr>
-        <tr>
-            <td>codPizza</td>
-            <td>Integer</td>
-            <td>Código da Pizza</td>
-        </tr>
-        </tbody>
-    </table>
-
-    <h3>Classe: Mista</h3>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Atributo</th>
-            <th>Tipo</th>
-            <th>Descrição</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>nomeDaPizza</td>
-            <td>String</td>
-            <td>Nome da pizza</td>
-        </tr>
-        <tr>
-            <td>tamanhoDaPizza</td>
-            <td>char</td>
-            <td>Tamanho da Pizza</td>
-        </tr>
-        <tr>
-            <td>valorDaPizza</td>
-            <td>double</td>
-            <td>Preço da Pizza</td>
-        </tr>
-        <tr>
-            <td>ingrediente</td>
-            <td>String</td>
-            <td>Ingredientes para produção da pizza</td>
-        </tr>
-        <tr>
-            <td>codPizza</td>
-            <td>Integer</td>
-            <td>Código da Pizza</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+        <h3>Classe: Mista</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Atributo</th>
+                <th>Tipo</th>
+                <th>Descrição</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>nomeDaPizza</td>
+                <td>String</td>
+                <td>Nome da pizza</td>
+            </tr>
+            <tr>
+                <td>tamanhoDaPizza</td>
+                <td>char</td>
+                <td>Tamanho da Pizza</td>
+            </tr>
+            <tr>
+                <td>valorDaPizza</td>
+                <td>double</td>
+                <td>Preço da Pizza</td>
+            </tr>
+            <tr>
+                <td>ingrediente</td>
+                <td>String</td>
+                <td>Ingredientes para produção da pizza</td>
+            </tr>
+            <tr>
+                <td>codPizza</td>
+                <td>Integer</td>
+                <td>Código da Pizza</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
