@@ -14,24 +14,46 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/">Home</a>
                 </li>
+                <c:if test="${not empty user}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/usuario/lista">Usuário</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/doce/lista">Doce</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mista/lista">Mista</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/salgada/lista">Salgada</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pizza/lista">Pizza</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/solicitante/lista">Solicitante</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pedido/lista">Pedido</a>
+                    </li>
+                </c:if>
+            </ul>
+
+            <ul class="navbar-nav">
+                <c:if test="${empty user}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Signup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                </c:if>
+
+                <c:if test="${not empty user}">
                 <li class="nav-item">
-                    <a class="nav-link" href="/doce/lista">Doce</a>
+                    <a class="nav-link" href="/logout">Logout ${user}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/mista/lista">Mista</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/salgada/lista">Salgada</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/pizza/lista">Pizza</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/solicitante/lista">Solicitante</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/pedido/lista">Pedido</a>
-                </li>
+                </c:if>
             </ul>
         </div>
     </nav>
