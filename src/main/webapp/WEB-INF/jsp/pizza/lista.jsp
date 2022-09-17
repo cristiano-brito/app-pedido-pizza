@@ -8,79 +8,53 @@
     <title>AppPedidoPizza</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm bg-light navbar-light">
-        <div class="container-fluid">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/doce/lista">Doce</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/mista/lista">Mista</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/salgada/lista">Salgada</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/pizza/lista">Pizza</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/solicitante/lista">Solicitante</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/pedido/lista">Pedido</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+    <c:import url="/WEB-INF/jsp/menu.jsp"/>
 
-<div class="container mt-3">
+    <div class="container mt-3">
 
-   <h3>Classe: Pizza</h3>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Tamanho</th>
-            <th>valor</th>
-            <th>Ingrediente</th>
-            <th>Código</th>
-            <th>Tipo</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Doce de leite</td>
-            <td>Grande</td>
-            <td>R$50.00</td>
-            <td>Leite, açúcar, doce de leite</td>
-            <td>5356363</td>
-            <td>Doce</td>
-        </tr>
-        <tr>
-            <td>tamanhoDaPizza</td>
-            <td>char</td>
-            <td>Tamanho da Pizza</td>
-        </tr>
-        <tr>
-            <td>valorDaPizza</td>
-            <td>double</td>
-            <td>Preço da Pizza</td>
-        </tr>
-        <tr>
-            <td>ingrediente</td>
-            <td>String</td>
-            <td>Ingredientes para produção da pizza</td>
-        </tr>
-        <tr>
-            <td>codPizza</td>
-            <td>Integer</td>
-            <td>Código da Pizza</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+       <h3>Classe: Pizza</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Tamanho</th>
+                <th>valor</th>
+                <th>Ingrediente</th>
+                <th>Código</th>
+                <th>Tipo</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Doce de leite</td>
+                <td>Grande</td>
+                <td>R$50.00</td>
+                <td>Leite, açúcar, doce de leite</td>
+                <td>5356363</td>
+                <td>Doce</td>
+            </tr>
+            <tr>
+                <td>tamanhoDaPizza</td>
+                <td>char</td>
+                <td>Tamanho da Pizza</td>
+            </tr>
+            <tr>
+                <td>valorDaPizza</td>
+                <td>double</td>
+                <td>Preço da Pizza</td>
+            </tr>
+            <tr>
+                <td>ingrediente</td>
+                <td>String</td>
+                <td>Ingredientes para produção da pizza</td>
+            </tr>
+            <tr>
+                <td>codPizza</td>
+                <td>Integer</td>
+                <td>Código da Pizza</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

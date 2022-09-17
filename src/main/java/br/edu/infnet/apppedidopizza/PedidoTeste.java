@@ -11,6 +11,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashSet;
@@ -86,6 +87,8 @@ public class PedidoTeste implements ApplicationRunner {
 
                 leitura.close();
                 fileReader.close();
+            } catch (FileNotFoundException e) {
+                System.out.println("[ERRO] O arquivo não existe!!");;
 
             } catch (IOException e) {
                 System.out.println("[ERRO] Problema no fechamento do arquivo!!");;
