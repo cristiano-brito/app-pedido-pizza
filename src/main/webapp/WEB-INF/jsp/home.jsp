@@ -1,5 +1,5 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +8,14 @@
     <title>AppPedidoPizza</title>
 </head>
 <body>
-    <c:import url="/WEB-INF/jsp/menu.jsp"/>
+<c:import url="/WEB-INF/jsp/menu.jsp"/>
 
-    <div class="container mt-3">
-        <h2>AppPedidoPizza</h2>
-        <p>Projeto de Gestão de Pedidos de Pizza</p>
+<div class="container mt-3">
+    <h2>${projeto.nome}</h2>
+    <p>${projeto.descricao}</p>
 
-        <h3>Classe: Solicitante</h3>
+    <c:forEach var="c" items="${projeto.classes}">
+        <h3>Classe: ${c.nome}</h3>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -24,165 +25,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>nome</td>
-                <td>String</td>
-                <td>Nome do solicitante</td>
-            </tr>
-            <tr>
-                <td>telefone</td>
-                <td>String</td>
-                <td>Telefone do solicitante</td>
-            </tr>
-            <tr>
-                <td>endereco</td>
-                <td>String</td>
-                <td>Endereço do solicitante</td>
-            </tr>
+            <c:forEach var="a" items="${c.atributos}">
+                <tr>
+                    <td>${a.nome}</td>
+                    <td>${a.tipo}</td>
+                    <td>${a.descricao}</td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
-
-        <h3>Classe: Pedido</h3>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Atributo</th>
-                <th>Tipo</th>
-                <th>Descrição</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>descricao</td>
-                <td>String</td>
-                <td>Descrição do pedido</td>
-            </tr>
-            <tr>
-                <td>data</td>
-                <td>LocalDateTime</td>
-                <td>Data de realização do pedido</td>
-            </tr>
-            <tr>
-                <td>web</td>
-                <td>boolean</td>
-                <td>Indicativo para um pedido online ou presencial</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h3>Classe: Doce</h3>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Atributo</th>
-                <th>Tipo</th>
-                <th>Descrição</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>nomeDaPizza</td>
-                <td>String</td>
-                <td>Nome da pizza</td>
-            </tr>
-            <tr>
-                <td>tamanhoDaPizza</td>
-                <td>char</td>
-                <td>Tamanho da Pizza</td>
-            </tr>
-            <tr>
-                <td>valorDaPizza</td>
-                <td>double</td>
-                <td>Preço da Pizza</td>
-            </tr>
-            <tr>
-                <td>ingrediente</td>
-                <td>String</td>
-                <td>Ingredientes para produção da pizza</td>
-            </tr>
-            <tr>
-                <td>codPizza</td>
-                <td>Integer</td>
-                <td>Código da Pizza</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h3>Classe: Salgada</h3>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Atributo</th>
-                <th>Tipo</th>
-                <th>Descrição</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>nomeDaPizza</td>
-                <td>String</td>
-                <td>Nome da pizza</td>
-            </tr>
-            <tr>
-                <td>tamanhoDaPizza</td>
-                <td>char</td>
-                <td>Tamanho da Pizza</td>
-            </tr>
-            <tr>
-                <td>valorDaPizza</td>
-                <td>double</td>
-                <td>Preço da Pizza</td>
-            </tr>
-            <tr>
-                <td>ingrediente</td>
-                <td>String</td>
-                <td>Ingredientes para produção da pizza</td>
-            </tr>
-            <tr>
-                <td>codPizza</td>
-                <td>Integer</td>
-                <td>Código da Pizza</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <h3>Classe: Mista</h3>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Atributo</th>
-                <th>Tipo</th>
-                <th>Descrição</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>nomeDaPizza</td>
-                <td>String</td>
-                <td>Nome da pizza</td>
-            </tr>
-            <tr>
-                <td>tamanhoDaPizza</td>
-                <td>char</td>
-                <td>Tamanho da Pizza</td>
-            </tr>
-            <tr>
-                <td>valorDaPizza</td>
-                <td>double</td>
-                <td>Preço da Pizza</td>
-            </tr>
-            <tr>
-                <td>ingrediente</td>
-                <td>String</td>
-                <td>Ingredientes para produção da pizza</td>
-            </tr>
-            <tr>
-                <td>codPizza</td>
-                <td>Integer</td>
-                <td>Código da Pizza</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+    </c:forEach>
+</div>
 </body>
 </html>
