@@ -13,6 +13,9 @@
     <div class="container mt-3">
 
        <h3>Cadastramento de Solicitantes</h3>
+
+        <h4><a href="/solicitante">Novo</a></h4>
+
         <table class="table table-striped">
             <thead>
             <tr>
@@ -30,7 +33,7 @@
                     <td>${s.nome}</td>
                     <td>${s.telefone}</td>
                     <td>${s.endereco}</td>
-                    <td><a href="/solicitante/${s.id}/excluir">excluir</a></td>
+                    <td><a href="/solicitante/${s.id}/excluir">Excluir</a></td>
                 </tr>
             </c:forEach>
             </tbody>

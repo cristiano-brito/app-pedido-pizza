@@ -4,23 +4,14 @@ import br.edu.infnet.model.exceptions.TamanhoDaPizzaMistaException;
 
 public class Mista extends Pizza {
 
-    private final String tipoPizzaMista;
-
-    public Mista(String tipoPizzaMista) {
-        this.tipoPizzaMista = tipoPizzaMista;
-    }
-
-    @Override
-    public void impressao() {
-        System.out.println("#mista");
-        System.out.println(this);
-    }
+    private String tipoPizzaMista;
+    private boolean comBordaMista;
 
     @Override
     public double calcularVenda() throws TamanhoDaPizzaMistaException {
 
-        if ((!(Character.compare('P', getTamanhoDaPizza()) == 0)) && (!(Character.compare('M', getTamanhoDaPizza()) == 0)) && (!(Character.compare('G', getTamanhoDaPizza()) == 0))) {
-            throw new TamanhoDaPizzaMistaException("Impossível preencher tamanho da pizza com ("+getTamanhoDaPizza()+") porque é diferente de (P) (M) (G)");
+        if ((!(Character.compare('P', getTamanhoDaPizza()) == 0)) && (!(Character.compare('M', getTamanhoDaPizza()) == 0)) && (!(Character.compare('G', getTamanhoDaPizza()) == 0)) && (!(Character.compare('F', getTamanhoDaPizza()) == 0))) {
+            throw new TamanhoDaPizzaMistaException("Impossível preencher tamanho da pizza com ("+getTamanhoDaPizza()+") porque é diferente de (P) (M) (G) (F)");
         }
 
         double precoDaPizza;
@@ -36,11 +27,29 @@ public class Mista extends Pizza {
     }
 
     @Override
+    public void impressao() {
+        System.out.println("#mista");
+        System.out.println(this);
+    }
+
+    @Override
     public String toString() {
-        return tipoPizzaMista + ";" + super.toString();
+        return tipoPizzaMista + ";" + comBordaMista + ";" + super.toString();
     }
 
     public String getTipoPizzaMista() {
         return tipoPizzaMista;
+    }
+
+    public void setTipoPizzaMista(String tipoPizzaMista) {
+        this.tipoPizzaMista = tipoPizzaMista;
+    }
+
+    public boolean isComBordaMista() {
+        return comBordaMista;
+    }
+
+    public void setComBordaMista(boolean comBordaMista) {
+        this.comBordaMista = comBordaMista;
     }
 }

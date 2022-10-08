@@ -13,6 +13,9 @@
     <div class="container mt-3">
 
        <h3>Cadastramento de pizzas salgadas</h3>
+
+        <h4><a href="/salgada">Novo</a></h4>
+
         <table class="table table-striped">
             <thead>
             <tr>
@@ -23,6 +26,7 @@
                 <th>Ingrediente</th>
                 <th>Código</th>
                 <th>Tipo</th>
+                <th>Borda Salgada</th>
                 <th></th>
             </tr>
             </thead>
@@ -36,6 +40,7 @@
                     <td>${s.ingrediente}</td>
                     <td>${s.codPizza}</td>
                     <td>${s.tipoPizzaSalgada}</td>
+                    <td>${s.comBordaSalgada}</td>
                     <td><a href="/salgada/${s.id}/excluir">excluir</a></td>
                 </tr>
             </c:forEach>

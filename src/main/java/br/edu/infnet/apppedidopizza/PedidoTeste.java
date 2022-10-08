@@ -26,28 +26,36 @@ public class PedidoTeste implements ApplicationRunner {
 
         System.out.println("##########pedido");
 
-        Doce doce1 = new Doce("doce");
+        Doce doce1 = new Doce();
+        doce1.setTipoPizzaDoce("doce");
+        doce1.setComBordaDoce(true);
         doce1.setNomeDaPizza("Doce de leite");
         doce1.setTamanhoDaPizza('G');
         doce1.setValorDaPizza(50.00);
         doce1.setIngrediente("leite, açúcar, doce de leite");
         doce1.setCodPizza(5356363);
 
-        Doce doce2 = new Doce("doce");
+        Doce doce2 = new Doce();
+        doce2.setTipoPizzaDoce("doce");
+        doce2.setComBordaDoce(true);
         doce2.setNomeDaPizza("Doce de leite");
         doce2.setTamanhoDaPizza('G');
         doce2.setValorDaPizza(50.00);
         doce2.setIngrediente("leite, açúcar, doce de leite");
         doce2.setCodPizza(5356363);
 
-        Mista mista1 = new Mista("mista");
+        Mista mista1 = new Mista();
+        mista1.setTipoPizzaMista("mista");
+        mista1.setComBordaMista(true);
         mista1.setNomeDaPizza("1/2 Calabressa, 1/2chocolate");
         mista1.setTamanhoDaPizza('G');
         mista1.setValorDaPizza(50.00);
         mista1.setIngrediente("Tomate, queijo, calabressa, chocolate, leite condensado");
         mista1.setCodPizza(5356363);
 
-        Salgada salgada1 = new Salgada("salgada");
+        Salgada salgada1 = new Salgada();
+        salgada1.setTipoPizzaSalgada("salgada");
+        salgada1.setComBordaSalgada(true);
         salgada1.setNomeDaPizza("Calabressa");
         salgada1.setTamanhoDaPizza('G');
         salgada1.setValorDaPizza(50.00);

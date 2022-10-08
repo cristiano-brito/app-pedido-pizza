@@ -4,11 +4,9 @@ import br.edu.infnet.model.exceptions.ValorDaPizzaSalgadaInvalidoException;
 
 public class Salgada extends Pizza {
 
-    private final String tipoPizzaSalgada;
+    private String tipoPizzaSalgada;
 
-    public Salgada(String tipoPizzaSalgada) {
-        this.tipoPizzaSalgada = tipoPizzaSalgada;
-    }
+    private boolean comBordaSalgada;
 
     @Override
     public double calcularVenda() throws ValorDaPizzaSalgadaInvalidoException {
@@ -30,10 +28,22 @@ public class Salgada extends Pizza {
 
     @Override
     public String toString() {
-        return tipoPizzaSalgada + ";" + super.toString();
+        return tipoPizzaSalgada + ";" + comBordaSalgada + ";" + super.toString();
     }
 
     public String getTipoPizzaSalgada() {
         return tipoPizzaSalgada;
+    }
+
+    public void setTipoPizzaSalgada(String tipoPizzaSalgada) {
+        this.tipoPizzaSalgada = tipoPizzaSalgada;
+    }
+
+    public boolean isComBordaSalgada() {
+        return comBordaSalgada;
+    }
+
+    public void setComBordaSalgada(boolean comBordaSalgada) {
+        this.comBordaSalgada = comBordaSalgada;
     }
 }

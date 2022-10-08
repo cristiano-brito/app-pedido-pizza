@@ -13,6 +13,9 @@
     <div class="container mt-3">
 
         <h3>Cadastramento de pizzas doces</h3>
+
+        <h4><a href="/doce">Novo</a></h4>
+
         <table class="table table-striped">
             <thead>
             <tr>
@@ -23,6 +26,7 @@
                 <th>Ingrediente</th>
                 <th>Código</th>
                 <th>Tipo</th>
+                <th>Borda Doce</th>
                 <th></th>
             </tr>
             </thead>
@@ -36,6 +40,7 @@
                     <td>${d.ingrediente}</td>
                     <td>${d.codPizza}</td>
                     <td>${d.tipoPizzaDoce}</td>
+                    <td>${d.comBordaDoce}</td>
                     <td><a href="/doce/${d.id}/excluir">excluir</a></td>
                 </tr>
             </c:forEach>

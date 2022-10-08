@@ -4,11 +4,8 @@ import br.edu.infnet.model.exceptions.ValorDaPizzaDoceInvalidoException;
 
 public class Doce extends Pizza {
 
-    private final String tipoPizzaDoce;
-
-    public Doce(String tipoPizzaDoce) {
-        this.tipoPizzaDoce = tipoPizzaDoce;
-    }
+    private String tipoPizzaDoce;
+    private boolean comBordaDoce;
 
     @Override
     public double calcularVenda() throws ValorDaPizzaDoceInvalidoException {
@@ -32,10 +29,22 @@ public class Doce extends Pizza {
 
     @Override
     public String toString() {
-        return tipoPizzaDoce + ";" + super.toString();
+        return tipoPizzaDoce + ";" + comBordaDoce + ";" + super.toString();
     }
 
     public String getTipoPizzaDoce() {
         return tipoPizzaDoce;
+    }
+
+    public void setTipoPizzaDoce(String tipoPizzaDoce) {
+        this.tipoPizzaDoce = tipoPizzaDoce;
+    }
+
+    public boolean isComBordaDoce() {
+        return comBordaDoce;
+    }
+
+    public void setComBordaDoce(boolean comBordaDoce) {
+        this.comBordaDoce = comBordaDoce;
     }
 }

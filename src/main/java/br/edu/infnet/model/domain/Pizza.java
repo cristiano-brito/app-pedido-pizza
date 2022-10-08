@@ -49,7 +49,8 @@ public abstract class Pizza implements IPrinter {
     }
 
     public void setTamanhoDaPizza(char tamanhoDaPizza) {
-        this.tamanhoDaPizza = tamanhoDaPizza;
+
+        this.tamanhoDaPizza = Character.toUpperCase(tamanhoDaPizza);
     }
 
     public double getValorDaPizza() {

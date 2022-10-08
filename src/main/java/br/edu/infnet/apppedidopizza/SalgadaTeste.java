@@ -1,74 +1,73 @@
 package br.edu.infnet.apppedidopizza;
 
-import br.edu.infnet.controller.SalgadaController;
 import br.edu.infnet.model.domain.Salgada;
 import br.edu.infnet.model.exceptions.ValorDaPizzaSalgadaInvalidoException;
+import br.edu.infnet.model.service.SalgadaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 @Component
 @Order(5)
 public class SalgadaTeste implements ApplicationRunner {
+
+    @Autowired
+    private SalgadaService salgadaService;
+
+    private Salgada salgada;
+
     @Override
     public void run(ApplicationArguments args) {
         System.out.println("##########salgada");
 
-        Salgada salgada1 = new Salgada("salgada");
-        salgada1.setNomeDaPizza("Calabressa");
-        salgada1.setTamanhoDaPizza('G');
-        salgada1.setValorDaPizza(50.00);
-        salgada1.setIngrediente("Tomate, queijo, calabressa");
-        salgada1.setCodPizza(4356363);
+        String dir ="C:/Users/crist/Documents/";
+        String arq ="salgadas.txt";
+
         try {
-            System.out.println("Cálculo de venda: " + salgada1.calcularVenda());
-            SalgadaController.incluir(salgada1);
-        } catch (ValorDaPizzaSalgadaInvalidoException e) {
-            System.out.println("[ERROR - SALGADA] " + e.getMessage());
+            try {
+                FileReader fileReader = new FileReader(dir+arq);
+                BufferedReader leitura = new BufferedReader(fileReader);
+
+                String linha = leitura.readLine();
+                while (linha != null) {
+
+                    String[] campos = linha.split(";");
+
+                    salgada = new Salgada();
+                    salgada.setTipoPizzaSalgada(campos[0]);
+                    salgada.setComBordaSalgada(Boolean.valueOf(campos[1]));
+                    salgada.setNomeDaPizza(campos[2]);
+                    salgada.setTamanhoDaPizza(campos[3].charAt(0));
+                    salgada.setValorDaPizza(Double.valueOf(campos[4]));
+                    salgada.setIngrediente(campos[5]);
+                    salgada.setCodPizza(Integer.valueOf(campos[6]));
+                    try {
+                        System.out.println("Cálculo de venda: " + salgada.calcularVenda());
+                        salgadaService.incluir(salgada);
+
+                        linha = leitura.readLine();
+                    } catch (ValorDaPizzaSalgadaInvalidoException e) {
+                        System.out.println("[ERROR - SALGADA] " + e.getMessage());
+                    }
+                }
+
+                leitura.close();
+                fileReader.close();
+            } catch (FileNotFoundException e) {
+                System.out.println("[ERRO] O arquivo não existe!!");;
+
+            } catch (IOException e) {
+                System.out.println("[ERRO] Problema no fechamento do arquivo!!");;
+            }
+        } finally {
+            System.out.println("Terminou!!!");
         }
-
-
-        Salgada salgada2 = new Salgada("salgada");
-        salgada2.setNomeDaPizza("4 Queijos");
-        salgada2.setTamanhoDaPizza('M');
-        salgada2.setValorDaPizza(30.00);
-        salgada2.setIngrediente("Tomate, queijo, queijo");
-        salgada2.setCodPizza(4356500);
-        try {
-            System.out.println("Cálculo de venda: " + salgada2.calcularVenda());
-            SalgadaController.incluir(salgada2);
-        } catch (ValorDaPizzaSalgadaInvalidoException e) {
-            System.out.println("[ERROR - SALGADA] " + e.getMessage());
-        }
-
-
-        Salgada salgada3 = new Salgada("salgada");
-        salgada3.setNomeDaPizza("Toscana");
-        salgada3.setTamanhoDaPizza('F');
-        salgada3.setValorDaPizza(50.00);
-        salgada3.setIngrediente("Tomate, queijo, toscana");
-        salgada3.setCodPizza(4356899);
-        try {
-            System.out.println("Cálculo de venda: " + salgada3.calcularVenda());
-            SalgadaController.incluir(salgada3);
-        } catch (ValorDaPizzaSalgadaInvalidoException e) {
-            System.out.println("[ERROR - SALGADA] " + e.getMessage());
-        }
-
-        Salgada salgada4 = new Salgada("salgada");
-        salgada4.setNomeDaPizza("Toscana");
-        salgada4.setTamanhoDaPizza('F');
-        salgada4.setValorDaPizza(20.0);
-        salgada4.setIngrediente("Tomate, queijo, toscana");
-        salgada4.setCodPizza(4356899);
-        try {
-            System.out.println("Cálculo de venda: " + salgada4.calcularVenda());
-            SalgadaController.incluir(salgada4);
-        } catch (ValorDaPizzaSalgadaInvalidoException e) {
-            System.out.println("[ERROR - SALGADA] " + e.getMessage());
-        }
-
-
     }
 }
