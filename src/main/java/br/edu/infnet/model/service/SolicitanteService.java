@@ -1,22 +1,21 @@
 package br.edu.infnet.model.service;
 
 import br.edu.infnet.model.domain.Solicitante;
+import br.edu.infnet.model.repository.SolicitanteRepository;
 import br.edu.infnet.model.tests.AppImpressao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class SolicitanteService {
 
-    private static Map<Integer, Solicitante> mapaSolicitante = new HashMap<>();
-    private static Integer id = 1;
+    @Autowired
+    private SolicitanteRepository solicitanteRepository;
 
     public void incluir(Solicitante solicitante) {
-        solicitante.setId(id++);
-        mapaSolicitante.put(solicitante.getId(), solicitante);
+        solicitanteRepository.save(solicitante);
 
         AppImpressao.relatorio("Inclusão de solicitante "
                 + solicitante.getNome()
@@ -24,10 +23,12 @@ public class SolicitanteService {
     }
 
     public Collection<Solicitante> obterLista() {
-        return mapaSolicitante.values();
+
+        return (Collection<Solicitante>) solicitanteRepository.findAll();
     }
 
     public void excluir(Integer id) {
-        mapaSolicitante.remove(id);
+
+        solicitanteRepository.deleteById(id);
     }
 }
