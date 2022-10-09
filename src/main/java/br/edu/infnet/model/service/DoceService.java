@@ -11,8 +11,8 @@ import java.util.Map;
 @Service
 public class DoceService {
 
-    private Map<Integer, Doce> mapaDoce = new HashMap<>();
-    private Integer id = 1;
+    private static Map<Integer, Doce> mapaDoce = new HashMap<>();
+    private static Integer id = 1;
 
     public void incluir(Doce doce) {
         doce.setId(id++);

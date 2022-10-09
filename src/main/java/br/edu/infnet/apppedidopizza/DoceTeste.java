@@ -28,7 +28,7 @@ public class DoceTeste implements ApplicationRunner {
         System.out.println("##########doce");
 
         String dir ="C:/Users/crist/Documents/";
-        String arq ="doces.txt";
+        String arq ="produtos.txt";
 
         try {
             try {
@@ -40,22 +40,25 @@ public class DoceTeste implements ApplicationRunner {
 
                     String[] campos = linha.split(";");
 
-                    doce = new Doce();
-                    doce.setTipoPizzaDoce(campos[0]);
-                    doce.setComBordaDoce(Boolean.valueOf(campos[1]));
-                    doce.setNomeDaPizza(campos[2]);
-                    doce.setTamanhoDaPizza(campos[3].charAt(0));
-                    doce.setValorDaPizza(Double.valueOf(campos[4]));
-                    doce.setIngrediente(campos[5]);
-                    doce.setCodPizza(Integer.valueOf(campos[6]));
-                    try {
-                        System.out.println("Cálculo de venda: " + doce.calcularVenda());
-                        doceService.incluir(doce);
+                    if("doce".equalsIgnoreCase(campos[0])){
+                        try {
+                            doce = new Doce();
+                            doce.setTipoPizzaDoce(campos[0]);
+                            doce.setComBordaDoce(Boolean.valueOf(campos[1]));
+                            doce.setNomeDaPizza(campos[2]);
+                            doce.setTamanhoDaPizza(campos[3].charAt(0));
+                            doce.setValorDaPizza(Double.valueOf(campos[4]));
+                            doce.setIngrediente(campos[5]);
+                            doce.setCodPizza(Integer.valueOf(campos[6]));
+                            System.out.println("Cálculo de venda: " + doce.calcularVenda());
+                            doceService.incluir(doce);
 
-                        linha = leitura.readLine();
-                    } catch (ValorDaPizzaDoceInvalidoException e) {
-                        System.out.println("[ERROR - DOCE] " + e.getMessage());
+                        } catch (ValorDaPizzaDoceInvalidoException e) {
+                            System.out.println("[ERROR - DOCE] " + e.getMessage());
+                        }
                     }
+
+                    linha = leitura.readLine();
                 }
 
                 leitura.close();

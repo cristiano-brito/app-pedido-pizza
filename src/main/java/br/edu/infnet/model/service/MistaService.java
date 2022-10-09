@@ -11,8 +11,8 @@ import java.util.Map;
 @Service
 public class MistaService {
 
-    private Map<Integer, Mista> mapaMista = new HashMap<>();
-    private Integer id = 1;
+    private static Map<Integer, Mista> mapaMista = new HashMap<>();
+    private static Integer id = 1;
 
     public void incluir(Mista mista) {
         mista.setId(id++);

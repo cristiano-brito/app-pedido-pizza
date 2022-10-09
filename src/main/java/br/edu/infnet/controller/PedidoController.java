@@ -1,48 +1,55 @@
 package br.edu.infnet.controller;
 
-import br.edu.infnet.model.domain.Pedido;
-import br.edu.infnet.model.tests.AppImpressao;
+import br.edu.infnet.model.service.PedidoService;
+import br.edu.infnet.model.service.PizzaService;
+import br.edu.infnet.model.service.SolicitanteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class PedidoController {
 
-    private static Map<Integer, Pedido> mapaPedido = new HashMap<>();
-    private static Integer id = 1;
+    @Autowired
+    private PedidoService pedidoService;
+    @Autowired
+    private SolicitanteService solicitanteService;
+    @Autowired
+    private PizzaService pizzaService;
 
-    public static void incluir(Pedido pedido) {
-        pedido.setId(id++);
-        mapaPedido.put(pedido.getId(), pedido);
+    @GetMapping(value = "/pedido")
+    public String telaCadastro(Model model) {
 
-        AppImpressao.relatorio("Inclusão do pedido "
-                + pedido.getDescricao()
-                + " realizada com sucesso!!!", pedido);
-    }
+        model.addAttribute("solicitantes", solicitanteService.obterLista());
+        model.addAttribute("pizzas", pizzaService.obterLista());
 
-    public static Collection<Pedido> obterLista() {
-        return mapaPedido.values();
-    }
-
-    public static void excluir(Integer id) {
-        mapaPedido.remove(id);
+        return "pedido/cadastro";
     }
 
     @GetMapping(value = "/pedido/lista")
     public String telaLista(Model model) {
-        model.addAttribute("listagem", obterLista());
+
+        model.addAttribute("listagem", pedidoService.obterLista());
+
         return "pedido/lista";
     }
 
+    @PostMapping(value = "/pedido/incluir")
+    public String Incluir() {
+
+        /*pedidoService.incluir(pedido);*/
+
+        return "redirect:/pedido/lista";
+    }
+
     @GetMapping(value = "/pedido/{id}/excluir")
-    public String exclusao(@PathVariable Integer id) {
-        excluir(id);
+    public String excluir(@PathVariable Integer id) {
+
+        pedidoService.excluir(id);
+
         return "redirect:/pedido/lista";
     }
 }

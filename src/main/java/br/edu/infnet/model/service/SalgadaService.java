@@ -11,8 +11,8 @@ import java.util.Map;
 @Service
 public class SalgadaService {
 
-    private Map<Integer, Salgada> mapaSalgada = new HashMap<>();
-    private Integer id = 1;
+    private static Map<Integer, Salgada> mapaSalgada = new HashMap<>();
+    private static Integer id = 1;
 
     public void incluir(Salgada salgada) {
         salgada.setId(id++);

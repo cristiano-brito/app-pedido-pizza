@@ -28,7 +28,7 @@ public class MistaTeste implements ApplicationRunner {
         System.out.println("##########mista");
 
         String dir ="C:/Users/crist/Documents/";
-        String arq ="mistas.txt";
+        String arq ="produtos.txt";
 
         try {
             try {
@@ -40,22 +40,25 @@ public class MistaTeste implements ApplicationRunner {
 
                     String[] campos = linha.split(";");
 
-                    mista = new Mista();
-                    mista.setTipoPizzaMista(campos[0]);
-                    mista.setComBordaMista(Boolean.valueOf(campos[1]));
-                    mista.setNomeDaPizza(campos[2]);
-                    mista.setTamanhoDaPizza(campos[3].charAt(0));
-                    mista.setValorDaPizza(Double.valueOf(campos[4]));
-                    mista.setIngrediente(campos[5]);
-                    mista.setCodPizza(Integer.valueOf(campos[6]));
-                    try {
-                        System.out.println("Cálculo de venda: " + mista.calcularVenda());
-                        mistaService.incluir(mista);
+                    if("mista".equalsIgnoreCase(campos[0])) {
+                        try {
+                            mista = new Mista();
+                            mista.setTipoPizzaMista(campos[0]);
+                            mista.setComBordaMista(Boolean.valueOf(campos[1]));
+                            mista.setNomeDaPizza(campos[2]);
+                            mista.setTamanhoDaPizza(campos[3].charAt(0));
+                            mista.setValorDaPizza(Double.valueOf(campos[4]));
+                            mista.setIngrediente(campos[5]);
+                            mista.setCodPizza(Integer.valueOf(campos[6]));
+                            System.out.println("Cálculo de venda: " + mista.calcularVenda());
+                            mistaService.incluir(mista);
 
-                        linha = leitura.readLine();
-                    } catch (TamanhoDaPizzaMistaException e) {
-                        System.out.println("[ERROR - MISTA] " + e.getMessage());
+                        } catch (TamanhoDaPizzaMistaException e) {
+                            System.out.println("[ERROR - MISTA] " + e.getMessage());
+                        }
                     }
+
+                    linha = leitura.readLine();
                 }
 
                 leitura.close();
@@ -65,7 +68,6 @@ public class MistaTeste implements ApplicationRunner {
 
             } catch (IOException e) {
                 System.out.println("[ERRO] Problema no fechamento do arquivo!!");
-
             }
         } finally {
             System.out.println("Terminou!!!");

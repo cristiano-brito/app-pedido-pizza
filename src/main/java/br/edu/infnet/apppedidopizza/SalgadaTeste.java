@@ -28,7 +28,7 @@ public class SalgadaTeste implements ApplicationRunner {
         System.out.println("##########salgada");
 
         String dir ="C:/Users/crist/Documents/";
-        String arq ="salgadas.txt";
+        String arq ="produtos.txt";
 
         try {
             try {
@@ -40,22 +40,25 @@ public class SalgadaTeste implements ApplicationRunner {
 
                     String[] campos = linha.split(";");
 
-                    salgada = new Salgada();
-                    salgada.setTipoPizzaSalgada(campos[0]);
-                    salgada.setComBordaSalgada(Boolean.valueOf(campos[1]));
-                    salgada.setNomeDaPizza(campos[2]);
-                    salgada.setTamanhoDaPizza(campos[3].charAt(0));
-                    salgada.setValorDaPizza(Double.valueOf(campos[4]));
-                    salgada.setIngrediente(campos[5]);
-                    salgada.setCodPizza(Integer.valueOf(campos[6]));
-                    try {
-                        System.out.println("Cálculo de venda: " + salgada.calcularVenda());
-                        salgadaService.incluir(salgada);
+                    if("salgada".equalsIgnoreCase(campos[0])) {
+                        try {
+                            salgada = new Salgada();
+                            salgada.setTipoPizzaSalgada(campos[0]);
+                            salgada.setComBordaSalgada(Boolean.valueOf(campos[1]));
+                            salgada.setNomeDaPizza(campos[2]);
+                            salgada.setTamanhoDaPizza(campos[3].charAt(0));
+                            salgada.setValorDaPizza(Double.valueOf(campos[4]));
+                            salgada.setIngrediente(campos[5]);
+                            salgada.setCodPizza(Integer.valueOf(campos[6]));
+                            System.out.println("Cálculo de venda: " + salgada.calcularVenda());
+                            salgadaService.incluir(salgada);
 
-                        linha = leitura.readLine();
-                    } catch (ValorDaPizzaSalgadaInvalidoException e) {
-                        System.out.println("[ERROR - SALGADA] " + e.getMessage());
+                        } catch (ValorDaPizzaSalgadaInvalidoException e) {
+                            System.out.println("[ERROR - SALGADA] " + e.getMessage());
+                        }
                     }
+
+                    linha = leitura.readLine();
                 }
 
                 leitura.close();

@@ -1,10 +1,11 @@
 package br.edu.infnet.apppedidopizza;
 
-import br.edu.infnet.controller.PedidoController;
 import br.edu.infnet.model.domain.*;
 import br.edu.infnet.model.exceptions.PedidoSemProdutosException;
 import br.edu.infnet.model.exceptions.SolicitanteNuloException;
 import br.edu.infnet.model.exceptions.TelefoneInvalidoException;
+import br.edu.infnet.model.service.PedidoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -14,53 +15,22 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
 @Order(1)
 public class PedidoTeste implements ApplicationRunner {
 
+    @Autowired
+    private PedidoService pedidoService;
+
     @Override
     public void run(ApplicationArguments args) {
 
         System.out.println("##########pedido");
-
-        Doce doce1 = new Doce();
-        doce1.setTipoPizzaDoce("doce");
-        doce1.setComBordaDoce(true);
-        doce1.setNomeDaPizza("Doce de leite");
-        doce1.setTamanhoDaPizza('G');
-        doce1.setValorDaPizza(50.00);
-        doce1.setIngrediente("leite, açúcar, doce de leite");
-        doce1.setCodPizza(5356363);
-
-        Doce doce2 = new Doce();
-        doce2.setTipoPizzaDoce("doce");
-        doce2.setComBordaDoce(true);
-        doce2.setNomeDaPizza("Doce de leite");
-        doce2.setTamanhoDaPizza('G');
-        doce2.setValorDaPizza(50.00);
-        doce2.setIngrediente("leite, açúcar, doce de leite");
-        doce2.setCodPizza(5356363);
-
-        Mista mista1 = new Mista();
-        mista1.setTipoPizzaMista("mista");
-        mista1.setComBordaMista(true);
-        mista1.setNomeDaPizza("1/2 Calabressa, 1/2chocolate");
-        mista1.setTamanhoDaPizza('G');
-        mista1.setValorDaPizza(50.00);
-        mista1.setIngrediente("Tomate, queijo, calabressa, chocolate, leite condensado");
-        mista1.setCodPizza(5356363);
-
-        Salgada salgada1 = new Salgada();
-        salgada1.setTipoPizzaSalgada("salgada");
-        salgada1.setComBordaSalgada(true);
-        salgada1.setNomeDaPizza("Calabressa");
-        salgada1.setTamanhoDaPizza('G');
-        salgada1.setValorDaPizza(50.00);
-        salgada1.setIngrediente("Tomate, queijo, calabressa");
-        salgada1.setCodPizza(5356363);
 
         String dir ="C:/Users/crist/Documents/";
         String arq ="pedidos.txt";
@@ -70,27 +40,83 @@ public class PedidoTeste implements ApplicationRunner {
                 FileReader fileReader = new FileReader(dir+arq);
                 BufferedReader leitura = new BufferedReader(fileReader);
 
+                Set<Pizza> listaPizzas = null;
+                List<Pedido> pedidos = new ArrayList<Pedido>();
+
                 String linha = leitura.readLine();
                 while (linha != null) {
-                    try {
-                        String[] campos = linha.split(";");
 
-                        Set<Pizza> listaPizzaPedido1 = new HashSet<>();
-                        listaPizzaPedido1.add(doce1);
-                        listaPizzaPedido1.add(doce2);
-                        listaPizzaPedido1.add(salgada1);
+                    String[] campos = linha.split(";");
 
-                        Solicitante solicitante1 = new Solicitante(campos[2], campos[3], campos[4]);
+                    switch (campos[0].toUpperCase()) {
+                        case "P":
+                            try {
+                                listaPizzas = new HashSet<Pizza>();
 
-                        Pedido pedido1 = new Pedido(solicitante1, listaPizzaPedido1);
-                        pedido1.setDescricao(campos[0]);
-                        pedido1.setWeb(Boolean.valueOf(campos[1]));
-                        PedidoController.incluir(pedido1);
-                    } catch (TelefoneInvalidoException | SolicitanteNuloException | PedidoSemProdutosException e) {
-                        System.out.println("[ERROR] - PEDIDO " + e.getMessage());
+                                Solicitante solicitante1 = new Solicitante(campos[3], campos[4], campos[5]);
+
+                                Pedido pedido = new Pedido(solicitante1, listaPizzas);
+                                pedido.setDescricao(campos[1]);
+                                pedido.setWeb(Boolean.valueOf(campos[2]));
+
+                                pedidos.add(pedido);
+
+                            } catch (TelefoneInvalidoException | SolicitanteNuloException | PedidoSemProdutosException e) {
+                                System.out.println("[ERROR] - PEDIDO " + e.getMessage());
+                            }
+                            break;
+                        case "D":
+                            Doce doce = new Doce();
+                            doce.setTipoPizzaDoce(campos[1]);
+                            doce.setComBordaDoce(Boolean.valueOf(campos[2]));
+                            doce.setNomeDaPizza(campos[3]);
+                            doce.setTamanhoDaPizza(campos[4].charAt(0));
+                            doce.setValorDaPizza(Double.valueOf(campos[5]));
+                            doce.setIngrediente(campos[6]);
+                            doce.setCodPizza(Integer.valueOf(campos[7]));
+
+                            listaPizzas.add(doce);
+
+                            break;
+                        case "M":
+                            Mista mista = new Mista();
+                            mista.setTipoPizzaMista(campos[1]);
+                            mista.setComBordaMista(Boolean.valueOf(campos[2]));
+                            mista.setNomeDaPizza(campos[3]);
+                            mista.setTamanhoDaPizza(campos[4].charAt(0));
+                            mista.setValorDaPizza(Double.valueOf(campos[5]));
+                            mista.setIngrediente(campos[6]);
+                            mista.setCodPizza(Integer.valueOf(campos[7]));
+
+                            listaPizzas.add(mista);
+
+                            break;
+                        case "S":
+                            Salgada salgada = new Salgada();
+                            salgada.setTipoPizzaSalgada(campos[1]);
+                            salgada.setComBordaSalgada(Boolean.valueOf(campos[2]));
+                            salgada.setNomeDaPizza(campos[3]);
+                            salgada.setTamanhoDaPizza(campos[4].charAt(0));
+                            salgada.setValorDaPizza(Double.valueOf(campos[5]));
+                            salgada.setIngrediente(campos[6]);
+                            salgada.setCodPizza(Integer.valueOf(campos[7]));
+
+                            listaPizzas.add(salgada);
+
+                            break;
+
+                        default:
+                            break;
                     }
 
                     linha = leitura.readLine();
+                }
+
+                for (Pedido p : pedidos) {
+                    pedidoService.incluir(p);
+                    System.out.println(">>>>>>>>>>>> " + p.getId());
+                    System.out.println(">>>>>>>> " + p.getSolicitante().getNome());
+                    System.out.println(">>>>> " + p.getPizzas().size());
                 }
 
                 leitura.close();

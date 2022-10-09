@@ -22,13 +22,13 @@ public class Pedido implements IPrinter {
             throw new SolicitanteNuloException("Impossível criar um pedido sem um solicitante");
         }
 
-        if (pizzas == null) {
+        /*if (pizzas == null) {
             throw new PedidoSemProdutosException("Impossível criar pedidos sem uma listagem de pizzas associada!");
         }
 
         if (pizzas.size() < 1) {
             throw new PedidoSemProdutosException("Impossível criar pedidos com menos de uma pizza!");
-        }
+        }*/
 
         data = LocalDateTime.now();
         this.solicitante = solicitante;

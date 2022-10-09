@@ -3,11 +3,21 @@ package br.edu.infnet.model.domain;
 import br.edu.infnet.interfaces.IPrinter;
 import br.edu.infnet.model.exceptions.TelefoneInvalidoException;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "TSolicitante")
 public class Solicitante implements IPrinter {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private final String nome;
-    private final String telefone;
-    private final String endereco;
+    private String nome;
+    private String telefone;
+    private String endereco;
+
+    public Solicitante() {
+    }
 
     public Solicitante(String nome, String telefone, String endereco) throws TelefoneInvalidoException {
 
