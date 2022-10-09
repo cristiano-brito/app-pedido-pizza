@@ -23,6 +23,7 @@
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Endereço</th>
+                <th>Usuário</th>
                 <th></th>
             </tr>
             </thead>
@@ -33,6 +34,7 @@
                     <td>${s.nome}</td>
                     <td>${s.telefone}</td>
                     <td>${s.endereco}</td>
+                    <td>${s.usuario.email}</td>
                     <td><a href="/solicitante/${s.id}/excluir">Excluir</a></td>
                 </tr>
             </c:forEach>

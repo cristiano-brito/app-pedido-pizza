@@ -2,6 +2,11 @@ package br.edu.infnet.model.domain;
 
 import br.edu.infnet.model.exceptions.ValorDaPizzaDoceInvalidoException;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TDoce")
 public class Doce extends Pizza {
 
     private String tipoPizzaDoce;

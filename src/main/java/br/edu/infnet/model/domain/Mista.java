@@ -2,6 +2,11 @@ package br.edu.infnet.model.domain;
 
 import br.edu.infnet.model.exceptions.TamanhoDaPizzaMistaException;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TMista")
 public class Mista extends Pizza {
 
     private String tipoPizzaMista;

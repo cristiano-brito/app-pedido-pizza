@@ -1,22 +1,21 @@
 package br.edu.infnet.model.service;
 
 import br.edu.infnet.model.domain.Doce;
+import br.edu.infnet.model.repository.DoceRepository;
 import br.edu.infnet.model.tests.AppImpressao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class DoceService {
 
-    private static Map<Integer, Doce> mapaDoce = new HashMap<>();
-    private static Integer id = 1;
+    @Autowired
+    private DoceRepository doceRepository;
 
     public void incluir(Doce doce) {
-        doce.setId(id++);
-        mapaDoce.put(doce.getId(), doce);
+        doceRepository.save(doce);
 
         AppImpressao.relatorio("Inclusão da pizza de "
                 + doce.getNomeDaPizza()
@@ -24,10 +23,12 @@ public class DoceService {
     }
 
     public Collection<Doce> obterLista() {
-        return mapaDoce.values();
+
+        return (Collection<Doce>) doceRepository.findAll();
     }
 
     public void excluir(Integer id) {
-        mapaDoce.remove(id);
+
+        doceRepository.deleteById(id);
     }
 }

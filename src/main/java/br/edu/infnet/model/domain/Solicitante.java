@@ -15,6 +15,9 @@ public class Solicitante implements IPrinter {
     private String nome;
     private String telefone;
     private String endereco;
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
     public Solicitante() {
     }
@@ -75,5 +78,13 @@ public class Solicitante implements IPrinter {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

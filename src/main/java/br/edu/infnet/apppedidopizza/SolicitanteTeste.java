@@ -1,6 +1,7 @@
 package br.edu.infnet.apppedidopizza;
 
 import br.edu.infnet.model.domain.Solicitante;
+import br.edu.infnet.model.domain.Usuario;
 import br.edu.infnet.model.exceptions.TelefoneInvalidoException;
 import br.edu.infnet.model.service.SolicitanteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class SolicitanteTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+
         String dir ="C:/Users/crist/Documents/";
         String arq ="solicitantes.txt";
 
@@ -39,6 +43,7 @@ public class SolicitanteTeste implements ApplicationRunner {
 
                     try {
                         Solicitante solicitante1 = new Solicitante(campos[0], campos[1], campos[2]);
+                        solicitante1.setUsuario(usuario);
                         solicitanteService.incluir(solicitante1);
                     } catch (TelefoneInvalidoException e) {
                         System.out.println("[ERROR] - SOLICITANTE " + e.getMessage());

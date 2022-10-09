@@ -5,9 +5,16 @@ import br.edu.infnet.model.exceptions.TamanhoDaPizzaMistaException;
 import br.edu.infnet.model.exceptions.ValorDaPizzaDoceInvalidoException;
 import br.edu.infnet.model.exceptions.ValorDaPizzaSalgadaInvalidoException;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "TPizza")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Pizza implements IPrinter {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nomeDaPizza;
     private char tamanhoDaPizza;

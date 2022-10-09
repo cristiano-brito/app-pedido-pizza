@@ -1,22 +1,21 @@
 package br.edu.infnet.model.service;
 
 import br.edu.infnet.model.domain.Salgada;
+import br.edu.infnet.model.repository.SalgadaRepository;
 import br.edu.infnet.model.tests.AppImpressao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class SalgadaService {
 
-    private static Map<Integer, Salgada> mapaSalgada = new HashMap<>();
-    private static Integer id = 1;
+    @Autowired
+    private SalgadaRepository salgadaRepository;
 
     public void incluir(Salgada salgada) {
-        salgada.setId(id++);
-        mapaSalgada.put(salgada.getId(), salgada);
+        salgadaRepository.save(salgada);
 
         AppImpressao.relatorio("Inclusão da pizza de "
                 + salgada.getNomeDaPizza()
@@ -24,10 +23,10 @@ public class SalgadaService {
     }
 
     public Collection<Salgada> obterLista() {
-        return mapaSalgada.values();
+        return (Collection<Salgada>) salgadaRepository.findAll();
     }
 
     public void excluir(Integer id) {
-        mapaSalgada.remove(id);
+        salgadaRepository.deleteById(id);
     }
 }
