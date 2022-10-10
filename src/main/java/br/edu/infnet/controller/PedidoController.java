@@ -1,5 +1,6 @@
 package br.edu.infnet.controller;
 
+import br.edu.infnet.model.domain.Pedido;
 import br.edu.infnet.model.domain.Usuario;
 import br.edu.infnet.model.service.PedidoService;
 import br.edu.infnet.model.service.PizzaService;
@@ -32,17 +33,19 @@ public class PedidoController {
     }
 
     @GetMapping(value = "/pedido/lista")
-    public String telaLista(Model model) {
+    public String telaLista(Model model, @SessionAttribute("user") Usuario usuario) {
 
-        model.addAttribute("listagem", pedidoService.obterLista());
+        model.addAttribute("listagem", pedidoService.obterLista(usuario));
 
         return "pedido/lista";
     }
 
     @PostMapping(value = "/pedido/incluir")
-    public String Incluir() {
+    public String Incluir(Pedido pedido, @SessionAttribute("user") Usuario usuario) {
 
-        /*pedidoService.incluir(pedido);*/
+        pedido.setUsuario(usuario);
+
+        pedidoService.incluir(pedido);
 
         return "redirect:/pedido/lista";
     }

@@ -8,6 +8,9 @@
     <title>AppPedidoPizza</title>
 </head>
 <body>
+
+    <c:set var="ativaBotao" value=""/>
+
     <c:import url="/WEB-INF/jsp/menu.jsp"/>
 
     <div class="container mt-3">
@@ -20,24 +23,36 @@
             </div>
 
             <div class="mb-3 mt-3">
-                <label>Solicitante:</label>
-                    <select class="form-control" id="sel1">
+                <c:if test="${not empty solicitantes}">
+                    <label>Solicitante:</label>
+                    <select name="solicitante" class="form-control" id="sel1">
                         <c:forEach var="s" items="${solicitantes}">
-                            <option>${s.nome}</option>
+                            <option value="${s.id}">${s.nome}</option>
                         </c:forEach>
                     </select>
+                </c:if>
+                <c:if test="${empty solicitantes}">
+                    <label>Não existem solicitantes cadastrados!!!</label>
+                    <c:set var="ativaBotao" value="disabled"/>
+                </c:if>
             </div>
 
             <div class="mb-3 mt-3">
-                <label>Pizzas:</label>
-                <c:forEach var="p" items="${pizzas}">
-                    <div class="checkbox">
-                        <label><input type="checkbox" value="">${p.nomeDaPizza}</label>
-                    </div>
-                </c:forEach>
+                <c:if test="${not empty pizzas}">
+                    <label>Pizzas:</label>
+                    <c:forEach var="p" items="${pizzas}">
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="pizzas" value="${p.id}">${p.nomeDaPizza}</label>
+                        </div>
+                    </c:forEach>
+                </c:if>
+                <c:if test="${empty pizzas}">
+                    <label>Não existem pizzas cadastradas!!!</label>
+                    <c:set var="ativaBotao" value="disabled"/>
+                </c:if>
             </div>
 
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button ${ativaBotao} type="submit" class="btn btn-primary">Cadastrar</button>
         </form>
     </div>
 </body>

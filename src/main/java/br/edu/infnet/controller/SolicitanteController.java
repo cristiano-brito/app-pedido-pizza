@@ -16,11 +16,16 @@ public class SolicitanteController {
 
     @Autowired
     private SolicitanteService solicitanteService;
+    private String mensagem;
+    private String tipo;
 
     @GetMapping(value = "/solicitante/lista")
     public String telaLista(Model model, @SessionAttribute("user") Usuario user) {
 
         model.addAttribute("listagem", solicitanteService.obterLista(user));
+
+        model.addAttribute("mensagem", mensagem);
+        model.addAttribute("tipo", tipo);
 
         return "solicitante/lista";
     }
@@ -37,13 +42,24 @@ public class SolicitanteController {
 
         solicitanteService.incluir(solicitante);
 
+        mensagem = "Inclusão do solicitante " + solicitante.getNome() + " realizada com sucesso!!!";
+        tipo = "alert-success";
+
         return "redirect:/solicitante/lista";
     }
 
     @GetMapping(value = "/solicitante/{id}/excluir")
     public String excluir(@PathVariable Integer id) {
 
-        solicitanteService.excluir(id);
+        try {
+            solicitanteService.excluir(id);
+
+            mensagem = "Exclusão do solicitante " + id + " realizada com sucesso!!!";
+            tipo = "alert-success";
+        } catch (Exception e) {
+            mensagem = "Impossível realizar exclusão do solicitante " + id + " !!!";
+            tipo = "alert-danger";
+        }
 
         return "redirect:/solicitante/lista";
     }

@@ -28,9 +28,12 @@ public class Pedido implements IPrinter {
     private Usuario usuario;
 
     public Pedido() {
+        data = LocalDateTime.now();
+        web = true;
     }
 
     public Pedido(Solicitante solicitante, Set<Pizza> pizzas) throws SolicitanteNuloException, PedidoSemProdutosException {
+        this();
 
         if(solicitante == null) {
             throw new SolicitanteNuloException("Impossível criar um pedido sem um solicitante");
@@ -44,7 +47,6 @@ public class Pedido implements IPrinter {
             throw new PedidoSemProdutosException("Impossível criar pedidos com menos de uma pizza!");
         }*/
 
-        data = LocalDateTime.now();
         this.solicitante = solicitante;
         this.pizzas = pizzas;
     }
