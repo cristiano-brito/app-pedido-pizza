@@ -1,6 +1,7 @@
 package br.edu.infnet.apppedidopizza;
 
 import br.edu.infnet.model.domain.Doce;
+import br.edu.infnet.model.domain.Usuario;
 import br.edu.infnet.model.exceptions.ValorDaPizzaDoceInvalidoException;
 import br.edu.infnet.model.service.DoceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class DoceTeste implements ApplicationRunner {
     public void run(ApplicationArguments args) {
         System.out.println("##########doce");
 
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+
         String dir ="C:/Users/crist/Documents/";
         String arq ="produtos.txt";
 
@@ -50,6 +54,7 @@ public class DoceTeste implements ApplicationRunner {
                             doce.setValorDaPizza(Double.valueOf(campos[4]));
                             doce.setIngrediente(campos[5]);
                             doce.setCodPizza(Integer.valueOf(campos[6]));
+                            doce.setUsuario(usuario);
                             System.out.println("Cálculo de venda: " + doce.calcularVenda());
                             doceService.incluir(doce);
 

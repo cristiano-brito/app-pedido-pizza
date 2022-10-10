@@ -1,6 +1,7 @@
 package br.edu.infnet.apppedidopizza;
 
 import br.edu.infnet.model.domain.Salgada;
+import br.edu.infnet.model.domain.Usuario;
 import br.edu.infnet.model.exceptions.ValorDaPizzaSalgadaInvalidoException;
 import br.edu.infnet.model.service.SalgadaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class SalgadaTeste implements ApplicationRunner {
     public void run(ApplicationArguments args) {
         System.out.println("##########salgada");
 
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+
         String dir ="C:/Users/crist/Documents/";
         String arq ="produtos.txt";
 
@@ -50,6 +54,7 @@ public class SalgadaTeste implements ApplicationRunner {
                             salgada.setValorDaPizza(Double.valueOf(campos[4]));
                             salgada.setIngrediente(campos[5]);
                             salgada.setCodPizza(Integer.valueOf(campos[6]));
+                            salgada.setUsuario(usuario);
                             System.out.println("Cálculo de venda: " + salgada.calcularVenda());
                             salgadaService.incluir(salgada);
 

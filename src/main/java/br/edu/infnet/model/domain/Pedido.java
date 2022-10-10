@@ -4,17 +4,31 @@ import br.edu.infnet.interfaces.IPrinter;
 import br.edu.infnet.model.exceptions.PedidoSemProdutosException;
 import br.edu.infnet.model.exceptions.SolicitanteNuloException;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+@Entity
+@Table(name = "TPedido")
 public class Pedido implements IPrinter {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String descricao;
-    private final LocalDateTime data;
+    private LocalDateTime data;
     private boolean web;
-    private final Solicitante solicitante;
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "idSolicitante")
+    private Solicitante solicitante;
+    @ManyToMany(cascade = CascadeType.DETACH)
     private Set<Pizza> pizzas;
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
+    public Pedido() {
+    }
 
     public Pedido(Solicitante solicitante, Set<Pizza> pizzas) throws SolicitanteNuloException, PedidoSemProdutosException {
 
@@ -66,6 +80,10 @@ public class Pedido implements IPrinter {
         return data;
     }
 
+    public void setData(LocalDateTime data) {
+        this.data = data;
+    }
+
     public boolean isWeb() {
         return web;
     }
@@ -78,11 +96,23 @@ public class Pedido implements IPrinter {
         return solicitante;
     }
 
+    public void setSolicitante(Solicitante solicitante) {
+        this.solicitante = solicitante;
+    }
+
     public Set<Pizza> getPizzas() {
         return pizzas;
     }
 
     public void setPizzas(Set<Pizza> pizzas) {
         this.pizzas = pizzas;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

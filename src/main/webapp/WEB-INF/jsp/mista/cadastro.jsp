@@ -25,7 +25,7 @@
 
             <div class="mb-3 mt-3">
                 <label>Tipo:</label>
-                <input type="text" class="form-control" placeholder="Entre com o tipo mista" name="tipoPizzaMista">
+                <input type="text" class="form-control" placeholder="Entre com o tipo mista" name="tipoPizzaMista" value="mista" readonly>
             </div>
 
             <button type="submit" class="btn btn-primary">Cadastrar</button>

@@ -1,5 +1,6 @@
 package br.edu.infnet.controller;
 
+import br.edu.infnet.model.domain.Usuario;
 import br.edu.infnet.model.service.PedidoService;
 import br.edu.infnet.model.service.PizzaService;
 import br.edu.infnet.model.service.SolicitanteService;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class PedidoController {
@@ -21,10 +23,10 @@ public class PedidoController {
     private PizzaService pizzaService;
 
     @GetMapping(value = "/pedido")
-    public String telaCadastro(Model model) {
+    public String telaCadastro(Model model, @SessionAttribute("user") Usuario usuario) {
 
-        model.addAttribute("solicitantes", solicitanteService.obterLista());
-        model.addAttribute("pizzas", pizzaService.obterLista());
+        model.addAttribute("solicitantes", solicitanteService.obterLista(usuario));
+        model.addAttribute("pizzas", pizzaService.obterLista(usuario));
 
         return "pedido/cadastro";
     }

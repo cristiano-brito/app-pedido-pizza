@@ -1,6 +1,7 @@
 package br.edu.infnet.apppedidopizza;
 
 import br.edu.infnet.model.domain.Mista;
+import br.edu.infnet.model.domain.Usuario;
 import br.edu.infnet.model.exceptions.TamanhoDaPizzaMistaException;
 import br.edu.infnet.model.service.MistaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class MistaTeste implements ApplicationRunner {
     public void run(ApplicationArguments args) {
         System.out.println("##########mista");
 
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+
         String dir ="C:/Users/crist/Documents/";
         String arq ="produtos.txt";
 
@@ -50,6 +54,7 @@ public class MistaTeste implements ApplicationRunner {
                             mista.setValorDaPizza(Double.valueOf(campos[4]));
                             mista.setIngrediente(campos[5]);
                             mista.setCodPizza(Integer.valueOf(campos[6]));
+                            mista.setUsuario(usuario);
                             System.out.println("Cálculo de venda: " + mista.calcularVenda());
                             mistaService.incluir(mista);
 

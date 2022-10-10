@@ -1,6 +1,7 @@
 package br.edu.infnet.model.service;
 
 import br.edu.infnet.model.domain.Mista;
+import br.edu.infnet.model.domain.Usuario;
 import br.edu.infnet.model.repository.MistaRepository;
 import br.edu.infnet.model.tests.AppImpressao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class MistaService {
 
     public Collection<Mista> obterLista() {
         return (Collection<Mista>) mistaRepository.findAll();
+    }
+
+    public Collection<Mista> obterLista(Usuario usuario) {
+
+        return mistaRepository.findAll(usuario.getId());
     }
 
     public void excluir(Integer id) {

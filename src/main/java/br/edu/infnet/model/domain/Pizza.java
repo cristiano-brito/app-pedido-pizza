@@ -6,6 +6,7 @@ import br.edu.infnet.model.exceptions.ValorDaPizzaDoceInvalidoException;
 import br.edu.infnet.model.exceptions.ValorDaPizzaSalgadaInvalidoException;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +22,11 @@ public abstract class Pizza implements IPrinter {
     private double valorDaPizza;
     private String ingrediente;
     private Integer codPizza;
+    @ManyToMany(mappedBy = "pizzas")
+    private List<Pedido> pedidos;
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
     public abstract double calcularVenda() throws ValorDaPizzaDoceInvalidoException, TamanhoDaPizzaMistaException, ValorDaPizzaSalgadaInvalidoException;
 
@@ -95,5 +101,21 @@ public abstract class Pizza implements IPrinter {
     @Override
     public int hashCode() {
         return Objects.hash(codPizza);
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 }

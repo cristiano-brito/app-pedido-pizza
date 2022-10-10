@@ -1,6 +1,7 @@
 package br.edu.infnet.model.service;
 
 import br.edu.infnet.model.domain.Salgada;
+import br.edu.infnet.model.domain.Usuario;
 import br.edu.infnet.model.repository.SalgadaRepository;
 import br.edu.infnet.model.tests.AppImpressao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,11 @@ public class SalgadaService {
 
     public Collection<Salgada> obterLista() {
         return (Collection<Salgada>) salgadaRepository.findAll();
+    }
+
+    public Collection<Salgada> obterLista(Usuario usuario) {
+
+        return salgadaRepository.findAll(usuario.getId());
     }
 
     public void excluir(Integer id) {

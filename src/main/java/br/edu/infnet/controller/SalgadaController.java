@@ -1,6 +1,7 @@
 package br.edu.infnet.controller;
 
 import br.edu.infnet.model.domain.Salgada;
+import br.edu.infnet.model.domain.Usuario;
 import br.edu.infnet.model.service.SalgadaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class SalgadaController {
@@ -16,9 +18,9 @@ public class SalgadaController {
     private SalgadaService salgadaService;
 
     @GetMapping(value = "/salgada/lista")
-    public String telaLista(Model model) {
+    public String telaLista(Model model, @SessionAttribute("user") Usuario usuario) {
 
-        model.addAttribute("listagem", salgadaService.obterLista());
+        model.addAttribute("listagem", salgadaService.obterLista(usuario));
 
         return "salgada/lista";
     }
@@ -31,7 +33,9 @@ public class SalgadaController {
     }
 
     @PostMapping(value = "/salgada/incluir")
-    public String incluir(Salgada salgada) {
+    public String incluir(Salgada salgada, @SessionAttribute("user") Usuario usuario) {
+
+        salgada.setUsuario(usuario);
 
         salgadaService.incluir(salgada);
 

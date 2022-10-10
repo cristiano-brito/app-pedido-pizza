@@ -1,6 +1,7 @@
 package br.edu.infnet.controller;
 
 import br.edu.infnet.model.domain.Doce;
+import br.edu.infnet.model.domain.Usuario;
 import br.edu.infnet.model.service.DoceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class DoceController {
@@ -16,9 +18,9 @@ public class DoceController {
     private DoceService doceService;
 
     @GetMapping(value = "/doce/lista")
-    public String telaLista(Model model) {
+    public String telaLista(Model model, @SessionAttribute("user") Usuario usuario) {
 
-        model.addAttribute("listagem", doceService.obterLista());
+        model.addAttribute("listagem", doceService.obterLista(usuario));
 
         return "doce/lista";
     }
@@ -31,7 +33,9 @@ public class DoceController {
     }
 
     @PostMapping(value = "/doce/incluir")
-    public String incluir(Doce doce) {
+    public String incluir(Doce doce, @SessionAttribute("user") Usuario usuario) {
+
+        doce.setUsuario(usuario);
 
         doceService.incluir(doce);
 
@@ -39,7 +43,7 @@ public class DoceController {
     }
 
     @GetMapping(value = "/doce/{id}/excluir")
-    public String exclusao(@PathVariable Integer id) {
+    public String excluir(@PathVariable Integer id) {
 
         doceService.excluir(id);
 

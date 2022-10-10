@@ -1,6 +1,7 @@
 package br.edu.infnet.controller;
 
 import br.edu.infnet.model.domain.Mista;
+import br.edu.infnet.model.domain.Usuario;
 import br.edu.infnet.model.service.MistaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Controller
 public class MistaController {
@@ -16,9 +18,9 @@ public class MistaController {
     private MistaService mistaService;
 
     @GetMapping(value = "/mista/lista")
-    public String telaLista(Model model) {
+    public String telaLista(Model model, @SessionAttribute("user") Usuario usuario) {
 
-        model.addAttribute("listagem", mistaService.obterLista());
+        model.addAttribute("listagem", mistaService.obterLista(usuario));
 
         return "mista/lista";
     }
@@ -31,7 +33,9 @@ public class MistaController {
     }
 
     @PostMapping(value = "/mista/incluir")
-    public String incluir(Mista mista) {
+    public String incluir(Mista mista, @SessionAttribute("user") Usuario usuario) {
+
+        mista.setUsuario(usuario);
 
         mistaService.incluir(mista);
 

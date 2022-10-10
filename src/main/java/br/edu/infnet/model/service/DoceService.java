@@ -1,6 +1,7 @@
 package br.edu.infnet.model.service;
 
 import br.edu.infnet.model.domain.Doce;
+import br.edu.infnet.model.domain.Usuario;
 import br.edu.infnet.model.repository.DoceRepository;
 import br.edu.infnet.model.tests.AppImpressao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,11 @@ public class DoceService {
     public Collection<Doce> obterLista() {
 
         return (Collection<Doce>) doceRepository.findAll();
+    }
+
+    public Collection<Doce> obterLista(Usuario usuario) {
+
+        return doceRepository.findAll(usuario.getId());
     }
 
     public void excluir(Integer id) {
